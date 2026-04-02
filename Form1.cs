@@ -52,6 +52,17 @@ namespace ProiectAtestat
             SetEnterLeaveTextBox(materialTypeTextBox, "Tip material");
             SetEnterLeaveTextBox(materialDensityTextBox, "Densitate (kg/m³)");
             SetEnterLeaveTextBox(materialYoungModulusTextBox, "Modul Young");
+            SetEnterLeaveTextBox(materialNotesTextBox, "Descriere (opț.)");
+
+            SetEnterLeaveTextBox(testTypeTextBox, "Tip test");
+            SetEnterLeaveTextBox(testNotesTextBox, "Descriere (opț.)");
+            SetEnterLeaveTextBox(testMaterialIdTextBox, "ID material asociat");
+
+            SetEnterLeaveTextBox(testResultTimeTextBox, "Timp (s)");
+            SetEnterLeaveTextBox(testResultForceTextBox, "Forță (N)");
+            SetEnterLeaveTextBox(testResultStrainTextBox, "Alungire relativă");
+            SetEnterLeaveTextBox(testResultNotesTextBox, "Comentarii (opț.)");
+            SetEnterLeaveTextBox(testResultTestIdTextBox, "ID test asociat");
         }
         public mainForm()
         {
@@ -74,6 +85,9 @@ namespace ProiectAtestat
             this.testResultsTableAdapter.Fill(this.testDatabaseDataSet.testResults);
             // TODO: This line of code loads data into the 'testDatabaseDataSet.materials' table. You can move, or remove it, as needed.
             this.materialsTableAdapter.Fill(this.testDatabaseDataSet.materials);
+
+            testDatabaseDataSet.EnforceConstraints = false;
+
             GenerateTestData();
 
             SetEnterLeaveTextBoxes();
@@ -87,7 +101,29 @@ namespace ProiectAtestat
                 materialTypeTextBox.Text,
                 decimal.TryParse(materialDensityTextBox.Text, out decimal density) ? density : 0,
                 decimal.TryParse(materialYoungModulusTextBox.Text, out decimal youngModulus) ? youngModulus : 0,
-                materialNoteTextBox.Text
+                materialNotesTextBox.Text
+            );
+        }
+
+        private void testInsertButton_Click(object sender, EventArgs e)
+        {
+            // Check that parameters are valid before inserting
+            testsTableAdapter.TestInsert(
+                testTypeTextBox.Text,
+                testNotesTextBox.Text,
+                int.TryParse(testMaterialIdTextBox.Text, out int materialId) ? materialId : 0
+            );
+        }
+
+        private void testResultInsertButton_Click(object sender, EventArgs e)
+        {
+            // Check that parameters are valid before inserting
+            testResultsTableAdapter.TestResultInsert(
+                int.TryParse(testResultTimeTextBox.Text, out int time) ? time : 0,
+                decimal.TryParse(testResultForceTextBox.Text, out decimal force) ? force : 0,
+                decimal.TryParse(testResultStrainTextBox.Text, out decimal strain) ? strain : 0,
+                testResultNotesTextBox.Text,
+                int.TryParse(testResultTestIdTextBox.Text, out int testId) ? testId : 0
             );
         }
     }

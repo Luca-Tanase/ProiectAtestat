@@ -42,6 +42,7 @@
             this.materialDensityTextBox = new System.Windows.Forms.TextBox();
             this.materialYoungModulusTextBox = new System.Windows.Forms.TextBox();
             this.materialInsertButton = new System.Windows.Forms.Button();
+            this.materialNotesTextBox = new System.Windows.Forms.TextBox();
             this.testDatabaseDataSet = new ProiectAtestat.TestDatabaseDataSet();
             this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.materialsTableAdapter();
@@ -50,9 +51,22 @@
             this.testsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.testsTableAdapter();
             this.testResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.materialNoteTextBox = new System.Windows.Forms.TextBox();
+            this.testInsertButton = new System.Windows.Forms.Button();
+            this.testMaterialIdTextBox = new System.Windows.Forms.TextBox();
+            this.testNotesTextBox = new System.Windows.Forms.TextBox();
+            this.testTypeTextBox = new System.Windows.Forms.TextBox();
+            this.testInsertLabel = new System.Windows.Forms.Label();
+            this.testResultTestIdTextBox = new System.Windows.Forms.TextBox();
+            this.testResultInsertButton = new System.Windows.Forms.Button();
+            this.testResultNotesTextBox = new System.Windows.Forms.TextBox();
+            this.testResultStrainTextBox = new System.Windows.Forms.TextBox();
+            this.testResultForceTextBox = new System.Windows.Forms.TextBox();
+            this.testResultTimeTextBox = new System.Windows.Forms.TextBox();
+            this.testResultInsertLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.materialPage.SuspendLayout();
+            this.testPage.SuspendLayout();
+            this.resultPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).BeginInit();
@@ -89,7 +103,7 @@
             // 
             // materialPage
             // 
-            this.materialPage.Controls.Add(this.materialNoteTextBox);
+            this.materialPage.Controls.Add(this.materialNotesTextBox);
             this.materialPage.Controls.Add(this.materialInsertButton);
             this.materialPage.Controls.Add(this.materialYoungModulusTextBox);
             this.materialPage.Controls.Add(this.materialDensityTextBox);
@@ -125,6 +139,11 @@
             // 
             // testPage
             // 
+            this.testPage.Controls.Add(this.testInsertButton);
+            this.testPage.Controls.Add(this.testMaterialIdTextBox);
+            this.testPage.Controls.Add(this.testNotesTextBox);
+            this.testPage.Controls.Add(this.testTypeTextBox);
+            this.testPage.Controls.Add(this.testInsertLabel);
             this.testPage.Location = new System.Drawing.Point(4, 25);
             this.testPage.Margin = new System.Windows.Forms.Padding(4);
             this.testPage.Name = "testPage";
@@ -136,6 +155,13 @@
             // 
             // resultPage
             // 
+            this.resultPage.Controls.Add(this.testResultTestIdTextBox);
+            this.resultPage.Controls.Add(this.testResultInsertButton);
+            this.resultPage.Controls.Add(this.testResultNotesTextBox);
+            this.resultPage.Controls.Add(this.testResultStrainTextBox);
+            this.resultPage.Controls.Add(this.testResultForceTextBox);
+            this.resultPage.Controls.Add(this.testResultTimeTextBox);
+            this.resultPage.Controls.Add(this.testResultInsertLabel);
             this.resultPage.Location = new System.Drawing.Point(4, 25);
             this.resultPage.Margin = new System.Windows.Forms.Padding(4);
             this.resultPage.Name = "resultPage";
@@ -196,13 +222,22 @@
             // 
             // materialInsertButton
             // 
-            this.materialInsertButton.Location = new System.Drawing.Point(815, 59);
+            this.materialInsertButton.Location = new System.Drawing.Point(760, 59);
             this.materialInsertButton.Name = "materialInsertButton";
             this.materialInsertButton.Size = new System.Drawing.Size(116, 32);
             this.materialInsertButton.TabIndex = 5;
             this.materialInsertButton.Text = "Inserează";
             this.materialInsertButton.UseVisualStyleBackColor = true;
             this.materialInsertButton.Click += new System.EventHandler(this.materialInsertButton_Click);
+            // 
+            // materialNotesTextBox
+            // 
+            this.materialNotesTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.materialNotesTextBox.Location = new System.Drawing.Point(572, 64);
+            this.materialNotesTextBox.Name = "materialNotesTextBox";
+            this.materialNotesTextBox.Size = new System.Drawing.Size(101, 22);
+            this.materialNotesTextBox.TabIndex = 6;
+            this.materialNotesTextBox.Text = "Descriere (opt)";
             // 
             // testDatabaseDataSet
             // 
@@ -244,14 +279,115 @@
             this.testsBindingSource.DataMember = "tests";
             this.testsBindingSource.DataSource = this.testDatabaseDataSet;
             // 
-            // materialNoteTextBox
+            // testInsertButton
             // 
-            this.materialNoteTextBox.ForeColor = System.Drawing.Color.Gray;
-            this.materialNoteTextBox.Location = new System.Drawing.Point(572, 64);
-            this.materialNoteTextBox.Name = "materialNoteTextBox";
-            this.materialNoteTextBox.Size = new System.Drawing.Size(104, 22);
-            this.materialNoteTextBox.TabIndex = 6;
-            this.materialNoteTextBox.Text = "Comentarii (opt)";
+            this.testInsertButton.Location = new System.Drawing.Point(478, 59);
+            this.testInsertButton.Name = "testInsertButton";
+            this.testInsertButton.Size = new System.Drawing.Size(116, 32);
+            this.testInsertButton.TabIndex = 12;
+            this.testInsertButton.Text = "Inserează";
+            this.testInsertButton.UseVisualStyleBackColor = true;
+            this.testInsertButton.Click += new System.EventHandler(this.testInsertButton_Click);
+            // 
+            // testMaterialIdTextBox
+            // 
+            this.testMaterialIdTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.testMaterialIdTextBox.Location = new System.Drawing.Point(293, 64);
+            this.testMaterialIdTextBox.Name = "testMaterialIdTextBox";
+            this.testMaterialIdTextBox.Size = new System.Drawing.Size(123, 22);
+            this.testMaterialIdTextBox.TabIndex = 10;
+            this.testMaterialIdTextBox.Text = "Id material asociat";
+            // 
+            // testNotesTextBox
+            // 
+            this.testNotesTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.testNotesTextBox.Location = new System.Drawing.Point(149, 64);
+            this.testNotesTextBox.Name = "testNotesTextBox";
+            this.testNotesTextBox.Size = new System.Drawing.Size(106, 22);
+            this.testNotesTextBox.TabIndex = 9;
+            this.testNotesTextBox.Text = "Comentarii (opț.)";
+            // 
+            // testTypeTextBox
+            // 
+            this.testTypeTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.testTypeTextBox.Location = new System.Drawing.Point(11, 64);
+            this.testTypeTextBox.Name = "testTypeTextBox";
+            this.testTypeTextBox.Size = new System.Drawing.Size(100, 22);
+            this.testTypeTextBox.TabIndex = 8;
+            this.testTypeTextBox.Text = "Tip test";
+            // 
+            // testInsertLabel
+            // 
+            this.testInsertLabel.AutoSize = true;
+            this.testInsertLabel.Location = new System.Drawing.Point(8, 14);
+            this.testInsertLabel.Name = "testInsertLabel";
+            this.testInsertLabel.Size = new System.Drawing.Size(93, 16);
+            this.testInsertLabel.TabIndex = 7;
+            this.testInsertLabel.Text = "Inserează test:";
+            // 
+            // testResultTestIdTextBox
+            // 
+            this.testResultTestIdTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.testResultTestIdTextBox.Location = new System.Drawing.Point(570, 64);
+            this.testResultTestIdTextBox.Name = "testResultTestIdTextBox";
+            this.testResultTestIdTextBox.Size = new System.Drawing.Size(97, 22);
+            this.testResultTestIdTextBox.TabIndex = 13;
+            this.testResultTestIdTextBox.Text = "Id test asociat";
+            // 
+            // testResultInsertButton
+            // 
+            this.testResultInsertButton.Location = new System.Drawing.Point(755, 59);
+            this.testResultInsertButton.Name = "testResultInsertButton";
+            this.testResultInsertButton.Size = new System.Drawing.Size(116, 32);
+            this.testResultInsertButton.TabIndex = 12;
+            this.testResultInsertButton.Text = "Inserează";
+            this.testResultInsertButton.UseVisualStyleBackColor = true;
+            this.testResultInsertButton.Click += new System.EventHandler(this.testResultInsertButton_Click);
+            // 
+            // testResultNotesTextBox
+            // 
+            this.testResultNotesTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.testResultNotesTextBox.Location = new System.Drawing.Point(433, 64);
+            this.testResultNotesTextBox.Name = "testResultNotesTextBox";
+            this.testResultNotesTextBox.Size = new System.Drawing.Size(108, 22);
+            this.testResultNotesTextBox.TabIndex = 11;
+            this.testResultNotesTextBox.Text = "Comentarii (opț.)";
+            // 
+            // testResultStrainTextBox
+            // 
+            this.testResultStrainTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.testResultStrainTextBox.Location = new System.Drawing.Point(293, 64);
+            this.testResultStrainTextBox.Name = "testResultStrainTextBox";
+            this.testResultStrainTextBox.Size = new System.Drawing.Size(115, 22);
+            this.testResultStrainTextBox.TabIndex = 10;
+            this.testResultStrainTextBox.Text = "Alungire relativă";
+            // 
+            // testResultForceTextBox
+            // 
+            this.testResultForceTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.testResultForceTextBox.Location = new System.Drawing.Point(150, 64);
+            this.testResultForceTextBox.Name = "testResultForceTextBox";
+            this.testResultForceTextBox.Size = new System.Drawing.Size(100, 22);
+            this.testResultForceTextBox.TabIndex = 9;
+            this.testResultForceTextBox.Text = "Forță";
+            // 
+            // testResultTimeTextBox
+            // 
+            this.testResultTimeTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.testResultTimeTextBox.Location = new System.Drawing.Point(11, 64);
+            this.testResultTimeTextBox.Name = "testResultTimeTextBox";
+            this.testResultTimeTextBox.Size = new System.Drawing.Size(100, 22);
+            this.testResultTimeTextBox.TabIndex = 8;
+            this.testResultTimeTextBox.Text = "Timp (s)";
+            // 
+            // testResultInsertLabel
+            // 
+            this.testResultInsertLabel.AutoSize = true;
+            this.testResultInsertLabel.Location = new System.Drawing.Point(8, 14);
+            this.testResultInsertLabel.Name = "testResultInsertLabel";
+            this.testResultInsertLabel.Size = new System.Drawing.Size(138, 16);
+            this.testResultInsertLabel.TabIndex = 7;
+            this.testResultInsertLabel.Text = "Inserează rezultat test:";
             // 
             // mainForm
             // 
@@ -266,6 +402,10 @@
             this.tabControl.ResumeLayout(false);
             this.materialPage.ResumeLayout(false);
             this.materialPage.PerformLayout();
+            this.testPage.ResumeLayout(false);
+            this.testPage.PerformLayout();
+            this.resultPage.ResumeLayout(false);
+            this.resultPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).EndInit();
@@ -297,7 +437,19 @@
         private System.Windows.Forms.TextBox materialDensityTextBox;
         private System.Windows.Forms.TextBox materialTypeTextBox;
         private System.Windows.Forms.Button materialInsertButton;
-        private System.Windows.Forms.TextBox materialNoteTextBox;
+        private System.Windows.Forms.TextBox materialNotesTextBox;
+        private System.Windows.Forms.Button testInsertButton;
+        private System.Windows.Forms.TextBox testMaterialIdTextBox;
+        private System.Windows.Forms.TextBox testNotesTextBox;
+        private System.Windows.Forms.TextBox testTypeTextBox;
+        private System.Windows.Forms.Label testInsertLabel;
+        private System.Windows.Forms.TextBox testResultTestIdTextBox;
+        private System.Windows.Forms.Button testResultInsertButton;
+        private System.Windows.Forms.TextBox testResultNotesTextBox;
+        private System.Windows.Forms.TextBox testResultStrainTextBox;
+        private System.Windows.Forms.TextBox testResultForceTextBox;
+        private System.Windows.Forms.TextBox testResultTimeTextBox;
+        private System.Windows.Forms.Label testResultInsertLabel;
     }
 }
 

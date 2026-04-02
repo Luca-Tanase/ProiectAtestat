@@ -7,19 +7,19 @@
 <DiagramLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ex:showrelationlabel="False" ViewPortX="-20" ViewPortY="-10" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:materials" ZOrder="3" X="18" Y="61" Height="273" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
-    <Shape ID="DesignTable:testResults" ZOrder="1" X="734" Y="59" Height="250" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
-    <Shape ID="DesignTable:tests" ZOrder="2" X="370" Y="71" Height="296" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
+    <Shape ID="DesignTable:testResults" ZOrder="1" X="734" Y="59" Height="273" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
+    <Shape ID="DesignTable:tests" ZOrder="2" X="380" Y="60" Height="319" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:tests_testResults" ZOrder="5" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>670</X>
-          <Y>178</Y>
+          <X>680</X>
+          <Y>167</Y>
         </Point>
         <Point>
           <X>734</X>
-          <Y>178</Y>
+          <Y>167</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -27,11 +27,11 @@
       <RoutePoints>
         <Point>
           <X>318</X>
-          <Y>161</Y>
+          <Y>150</Y>
         </Point>
         <Point>
-          <X>370</X>
-          <Y>161</Y>
+          <X>380</X>
+          <Y>150</Y>
         </Point>
       </RoutePoints>
     </Connector>
