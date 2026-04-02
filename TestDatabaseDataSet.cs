@@ -1,0 +1,7 @@
+﻿namespace ProiectAtestat
+{
+}
+
+namespace ProiectAtestat
+{
+}
