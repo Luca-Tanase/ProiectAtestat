@@ -32,10 +32,16 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.dashboardPage = new System.Windows.Forms.TabPage();
             this.materialPage = new System.Windows.Forms.TabPage();
+            this.materialNameTextBox = new System.Windows.Forms.TextBox();
+            this.materialInsertLabel = new System.Windows.Forms.Label();
             this.testPage = new System.Windows.Forms.TabPage();
             this.resultPage = new System.Windows.Forms.TabPage();
             this.graphPage = new System.Windows.Forms.TabPage();
             this.exportPage = new System.Windows.Forms.TabPage();
+            this.materialTypeTextBox = new System.Windows.Forms.TextBox();
+            this.materialDensityTextBox = new System.Windows.Forms.TextBox();
+            this.materialYoungModulusTextBox = new System.Windows.Forms.TextBox();
+            this.materialInsertButton = new System.Windows.Forms.Button();
             this.testDatabaseDataSet = new ProiectAtestat.TestDatabaseDataSet();
             this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.materialsTableAdapter();
@@ -44,7 +50,9 @@
             this.testsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.testsTableAdapter();
             this.testResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.materialNoteTextBox = new System.Windows.Forms.TextBox();
             this.tabControl.SuspendLayout();
+            this.materialPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).BeginInit();
@@ -81,6 +89,13 @@
             // 
             // materialPage
             // 
+            this.materialPage.Controls.Add(this.materialNoteTextBox);
+            this.materialPage.Controls.Add(this.materialInsertButton);
+            this.materialPage.Controls.Add(this.materialYoungModulusTextBox);
+            this.materialPage.Controls.Add(this.materialDensityTextBox);
+            this.materialPage.Controls.Add(this.materialTypeTextBox);
+            this.materialPage.Controls.Add(this.materialNameTextBox);
+            this.materialPage.Controls.Add(this.materialInsertLabel);
             this.materialPage.Location = new System.Drawing.Point(4, 25);
             this.materialPage.Margin = new System.Windows.Forms.Padding(4);
             this.materialPage.Name = "materialPage";
@@ -89,6 +104,24 @@
             this.materialPage.TabIndex = 1;
             this.materialPage.Text = "Materiale";
             this.materialPage.UseVisualStyleBackColor = true;
+            // 
+            // materialNameTextBox
+            // 
+            this.materialNameTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.materialNameTextBox.Location = new System.Drawing.Point(11, 64);
+            this.materialNameTextBox.Name = "materialNameTextBox";
+            this.materialNameTextBox.Size = new System.Drawing.Size(100, 22);
+            this.materialNameTextBox.TabIndex = 1;
+            this.materialNameTextBox.Text = "Nume material";
+            // 
+            // materialInsertLabel
+            // 
+            this.materialInsertLabel.AutoSize = true;
+            this.materialInsertLabel.Location = new System.Drawing.Point(8, 14);
+            this.materialInsertLabel.Name = "materialInsertLabel";
+            this.materialInsertLabel.Size = new System.Drawing.Size(120, 16);
+            this.materialInsertLabel.TabIndex = 0;
+            this.materialInsertLabel.Text = "Inserează material:";
             // 
             // testPage
             // 
@@ -134,6 +167,43 @@
             this.exportPage.Text = "Export";
             this.exportPage.UseVisualStyleBackColor = true;
             // 
+            // materialTypeTextBox
+            // 
+            this.materialTypeTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.materialTypeTextBox.Location = new System.Drawing.Point(149, 64);
+            this.materialTypeTextBox.Name = "materialTypeTextBox";
+            this.materialTypeTextBox.Size = new System.Drawing.Size(100, 22);
+            this.materialTypeTextBox.TabIndex = 2;
+            this.materialTypeTextBox.Text = "Tip";
+            // 
+            // materialDensityTextBox
+            // 
+            this.materialDensityTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.materialDensityTextBox.Location = new System.Drawing.Point(293, 64);
+            this.materialDensityTextBox.Name = "materialDensityTextBox";
+            this.materialDensityTextBox.Size = new System.Drawing.Size(115, 22);
+            this.materialDensityTextBox.TabIndex = 3;
+            this.materialDensityTextBox.Text = "Densitate";
+            // 
+            // materialYoungModulusTextBox
+            // 
+            this.materialYoungModulusTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.materialYoungModulusTextBox.Location = new System.Drawing.Point(437, 64);
+            this.materialYoungModulusTextBox.Name = "materialYoungModulusTextBox";
+            this.materialYoungModulusTextBox.Size = new System.Drawing.Size(100, 22);
+            this.materialYoungModulusTextBox.TabIndex = 4;
+            this.materialYoungModulusTextBox.Text = "Modul Young";
+            // 
+            // materialInsertButton
+            // 
+            this.materialInsertButton.Location = new System.Drawing.Point(815, 59);
+            this.materialInsertButton.Name = "materialInsertButton";
+            this.materialInsertButton.Size = new System.Drawing.Size(116, 32);
+            this.materialInsertButton.TabIndex = 5;
+            this.materialInsertButton.Text = "Inserează";
+            this.materialInsertButton.UseVisualStyleBackColor = true;
+            this.materialInsertButton.Click += new System.EventHandler(this.materialInsertButton_Click);
+            // 
             // testDatabaseDataSet
             // 
             this.testDatabaseDataSet.DataSetName = "TestDatabaseDataSet";
@@ -174,6 +244,15 @@
             this.testsBindingSource.DataMember = "tests";
             this.testsBindingSource.DataSource = this.testDatabaseDataSet;
             // 
+            // materialNoteTextBox
+            // 
+            this.materialNoteTextBox.ForeColor = System.Drawing.Color.Gray;
+            this.materialNoteTextBox.Location = new System.Drawing.Point(572, 64);
+            this.materialNoteTextBox.Name = "materialNoteTextBox";
+            this.materialNoteTextBox.Size = new System.Drawing.Size(104, 22);
+            this.materialNoteTextBox.TabIndex = 6;
+            this.materialNoteTextBox.Text = "Comentarii (opt)";
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -185,6 +264,8 @@
             this.Text = "Evidență Materiale și Proprietăți mecanice";
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.tabControl.ResumeLayout(false);
+            this.materialPage.ResumeLayout(false);
+            this.materialPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).EndInit();
@@ -210,6 +291,13 @@
         private System.Windows.Forms.BindingSource testResultsBindingSource;
         private TestDatabaseDataSetTableAdapters.testsTableAdapter testsTableAdapter;
         private System.Windows.Forms.BindingSource testsBindingSource;
+        private System.Windows.Forms.Label materialInsertLabel;
+        private System.Windows.Forms.TextBox materialNameTextBox;
+        private System.Windows.Forms.TextBox materialYoungModulusTextBox;
+        private System.Windows.Forms.TextBox materialDensityTextBox;
+        private System.Windows.Forms.TextBox materialTypeTextBox;
+        private System.Windows.Forms.Button materialInsertButton;
+        private System.Windows.Forms.TextBox materialNoteTextBox;
     }
 }
 

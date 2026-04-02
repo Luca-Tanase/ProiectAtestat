@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace ProiectAtestat
@@ -22,6 +23,36 @@ namespace ProiectAtestat
                 testResultsTableAdapter.TestTestResultInsert(i, i * 50, (decimal)(i * 0.0005), 1);
             }
         }
+        private void SetEnterLeaveTextBox(TextBox tb, string placeholder)
+        {
+            tb.Text = placeholder;
+            tb.ForeColor = Color.Gray;
+
+            tb.Enter += (s, e) =>
+            {
+                if (tb.Text == placeholder)
+                {
+                    tb.Text = "";
+                    tb.ForeColor = Color.Black;
+                }
+            };
+
+            tb.Leave += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(tb.Text))
+                {
+                    tb.Text = placeholder;
+                    tb.ForeColor = Color.Gray;
+                }
+            };
+        }
+        private void SetEnterLeaveTextBoxes()
+        {
+            SetEnterLeaveTextBox(materialNameTextBox, "Nume material");
+            SetEnterLeaveTextBox(materialTypeTextBox, "Tip material");
+            SetEnterLeaveTextBox(materialDensityTextBox, "Densitate (kg/m³)");
+            SetEnterLeaveTextBox(materialYoungModulusTextBox, "Modul Young");
+        }
         public mainForm()
         {
             InitializeComponent();
@@ -44,6 +75,20 @@ namespace ProiectAtestat
             // TODO: This line of code loads data into the 'testDatabaseDataSet.materials' table. You can move, or remove it, as needed.
             this.materialsTableAdapter.Fill(this.testDatabaseDataSet.materials);
             GenerateTestData();
+
+            SetEnterLeaveTextBoxes();
+        }
+
+        private void materialInsertButton_Click(object sender, EventArgs e)
+        {
+            // Check that parameters are valid before inserting
+            materialsTableAdapter.MaterialInsert(
+                materialNameTextBox.Text,
+                materialTypeTextBox.Text,
+                decimal.TryParse(materialDensityTextBox.Text, out decimal density) ? density : 0,
+                decimal.TryParse(materialYoungModulusTextBox.Text, out decimal youngModulus) ? youngModulus : 0,
+                materialNoteTextBox.Text
+            );
         }
     }
 }
