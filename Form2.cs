@@ -34,7 +34,7 @@ namespace ProiectAtestat
 
         private void confirmButton_Click(object sender, EventArgs e)
         {
-            if (targetMaterialComboBox.SelectedIndex < 0) return; // nothing selected
+            if (targetMaterialComboBox.SelectedIndex < 0) return;
             TargetMaterialId = (int)targetMaterialComboBox.SelectedValue;
             this.DialogResult = DialogResult.OK;
             this.Close();
