@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -22,6 +23,8 @@ namespace ProiectAtestat
             {
                 testResultsTableAdapter.TestTestResultInsert(i, i * 50, (decimal)(i * 0.0005), 1);
             }
+
+            materialsTableAdapter.Fill(testDatabaseDataSet.materials);
         }
         private void SetEnterLeaveTextBox(TextBox tb, string placeholder)
         {
@@ -125,6 +128,33 @@ namespace ProiectAtestat
                 testResultNotesTextBox.Text,
                 int.TryParse(testResultTestIdTextBox.Text, out int testId) ? testId : 0
             );
+        }
+
+        private void testReassignButton_Click(object sender, EventArgs e)
+        {
+            if (materialsBindingSource.Current == null)
+                return;
+
+            DataRowView currentRow = (DataRowView)materialsBindingSource.Current;
+
+            int sourceMaterialId = (int)currentRow["id"];
+            string sourceMaterialName = currentRow["name"].ToString();
+
+            using (ReassignTestsForm dlg = new ReassignTestsForm())
+            {
+                dlg.SourceMaterialId = sourceMaterialId;
+                dlg.SourceMaterialName = sourceMaterialName;
+
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    testsTableAdapter.ReassignTests(
+                        sourceMaterialId,
+                        dlg.TargetMaterialId
+                    );
+
+                    testsTableAdapter.Fill(testDatabaseDataSet.tests);
+                }
+            }
         }
     }
 }
