@@ -191,8 +191,8 @@ namespace ProiectAtestat
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     testsTableAdapter.ReassignTests(
-                        sourceMaterialId,
-                        dlg.TargetMaterialId
+                        dlg.TargetMaterialId,
+                        sourceMaterialId
                     );
 
                     testsTableAdapter.Fill(testDatabaseDataSet.tests);
@@ -235,6 +235,16 @@ namespace ProiectAtestat
             testsTableAdapter.TestStatisticsUpdate(testId);
             
             testsTableAdapter.Fill(testDatabaseDataSet.tests);
+        }
+
+        private void avgMaxForceButton_Click(object sender, EventArgs e)
+        {
+            using (AvgMaxForceForm form = new AvgMaxForceForm())
+            {
+                form.ShowDialog();
+                 
+                //materialsTableAdapter.Fill(testDatabaseDataSet.materials);
+            }
         }
     }
 }

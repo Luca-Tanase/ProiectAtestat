@@ -31,7 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.dashboardPage = new System.Windows.Forms.TabPage();
+            this.lastTestLabel = new System.Windows.Forms.Label();
+            this.lastTestDataGridView = new System.Windows.Forms.DataGridView();
+            this.testDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testMaxForce = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testMaxStrain = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialPage = new System.Windows.Forms.TabPage();
+            this.materialDeleteButton = new System.Windows.Forms.Button();
+            this.testReassignButton = new System.Windows.Forms.Button();
+            this.materialsDataGridView = new System.Windows.Forms.DataGridView();
             this.materialNotesTextBox = new System.Windows.Forms.TextBox();
             this.materialInsertButton = new System.Windows.Forms.Button();
             this.materialYoungModulusTextBox = new System.Windows.Forms.TextBox();
@@ -40,6 +48,8 @@
             this.materialNameTextBox = new System.Windows.Forms.TextBox();
             this.materialInsertLabel = new System.Windows.Forms.Label();
             this.testPage = new System.Windows.Forms.TabPage();
+            this.testStatisticsUpdateButton = new System.Windows.Forms.Button();
+            this.testsDataGridView = new System.Windows.Forms.DataGridView();
             this.testInsertButton = new System.Windows.Forms.Button();
             this.testMaterialIdTextBox = new System.Windows.Forms.TextBox();
             this.testNotesTextBox = new System.Windows.Forms.TextBox();
@@ -55,13 +65,7 @@
             this.testResultInsertLabel = new System.Windows.Forms.Label();
             this.graphPage = new System.Windows.Forms.TabPage();
             this.exportPage = new System.Windows.Forms.TabPage();
-            this.materialsDataGridView = new System.Windows.Forms.DataGridView();
-            this.testReassignButton = new System.Windows.Forms.Button();
-            this.materialDeleteButton = new System.Windows.Forms.Button();
-            this.testsDataGridView = new System.Windows.Forms.DataGridView();
-            this.testStatisticsUpdateButton = new System.Windows.Forms.Button();
-            this.lastTestDataGridView = new System.Windows.Forms.DataGridView();
-            this.lastTestLabel = new System.Windows.Forms.Label();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testDatabaseDataSet = new ProiectAtestat.TestDatabaseDataSet();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,18 +88,15 @@
             this.testResultsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.testResultsTableAdapter();
             this.testsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.testsTableAdapter();
             this.testResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testMaxForce = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testMaxStrain = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avgMaxForceButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.dashboardPage.SuspendLayout();
-            this.materialPage.SuspendLayout();
-            this.testPage.SuspendLayout();
-            this.testResultPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastTestDataGridView)).BeginInit();
+            this.materialPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsDataGridView)).BeginInit();
+            this.testPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.testsDataGridView)).BeginInit();
+            this.testResultPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).BeginInit();
@@ -133,8 +134,59 @@
             this.dashboardPage.Text = "Dashboard";
             this.dashboardPage.UseVisualStyleBackColor = true;
             // 
+            // lastTestLabel
+            // 
+            this.lastTestLabel.AutoSize = true;
+            this.lastTestLabel.Location = new System.Drawing.Point(8, 141);
+            this.lastTestLabel.Name = "lastTestLabel";
+            this.lastTestLabel.Size = new System.Drawing.Size(185, 16);
+            this.lastTestLabel.TabIndex = 1;
+            this.lastTestLabel.Text = "Ultimul test al fiecărui material:";
+            // 
+            // lastTestDataGridView
+            // 
+            this.lastTestDataGridView.AutoGenerateColumns = false;
+            this.lastTestDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.lastTestDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.testDate,
+            this.testMaxForce,
+            this.testMaxStrain});
+            this.lastTestDataGridView.DataSource = this.materialsBindingSource;
+            this.lastTestDataGridView.Location = new System.Drawing.Point(11, 179);
+            this.lastTestDataGridView.Name = "lastTestDataGridView";
+            this.lastTestDataGridView.RowHeadersWidth = 51;
+            this.lastTestDataGridView.RowTemplate.Height = 24;
+            this.lastTestDataGridView.Size = new System.Drawing.Size(552, 142);
+            this.lastTestDataGridView.TabIndex = 0;
+            // 
+            // testDate
+            // 
+            this.testDate.DataPropertyName = "date";
+            this.testDate.HeaderText = "Date";
+            this.testDate.MinimumWidth = 6;
+            this.testDate.Name = "testDate";
+            this.testDate.Width = 125;
+            // 
+            // testMaxForce
+            // 
+            this.testMaxForce.DataPropertyName = "maxForce_N";
+            this.testMaxForce.HeaderText = "Max Force ";
+            this.testMaxForce.MinimumWidth = 6;
+            this.testMaxForce.Name = "testMaxForce";
+            this.testMaxForce.Width = 125;
+            // 
+            // testMaxStrain
+            // 
+            this.testMaxStrain.DataPropertyName = "maxStrain";
+            this.testMaxStrain.HeaderText = "Max Strain";
+            this.testMaxStrain.MinimumWidth = 6;
+            this.testMaxStrain.Name = "testMaxStrain";
+            this.testMaxStrain.Width = 125;
+            // 
             // materialPage
             // 
+            this.materialPage.Controls.Add(this.avgMaxForceButton);
             this.materialPage.Controls.Add(this.materialDeleteButton);
             this.materialPage.Controls.Add(this.testReassignButton);
             this.materialPage.Controls.Add(this.materialsDataGridView);
@@ -153,6 +205,45 @@
             this.materialPage.TabIndex = 1;
             this.materialPage.Text = "Materiale";
             this.materialPage.UseVisualStyleBackColor = true;
+            // 
+            // materialDeleteButton
+            // 
+            this.materialDeleteButton.Location = new System.Drawing.Point(872, 370);
+            this.materialDeleteButton.Name = "materialDeleteButton";
+            this.materialDeleteButton.Size = new System.Drawing.Size(126, 32);
+            this.materialDeleteButton.TabIndex = 9;
+            this.materialDeleteButton.Text = "Șterge";
+            this.materialDeleteButton.UseVisualStyleBackColor = true;
+            this.materialDeleteButton.Click += new System.EventHandler(this.materialDeleteButton_Click);
+            // 
+            // testReassignButton
+            // 
+            this.testReassignButton.Location = new System.Drawing.Point(872, 177);
+            this.testReassignButton.Name = "testReassignButton";
+            this.testReassignButton.Size = new System.Drawing.Size(126, 32);
+            this.testReassignButton.TabIndex = 8;
+            this.testReassignButton.Text = "Reatribuie teste";
+            this.testReassignButton.UseVisualStyleBackColor = true;
+            this.testReassignButton.Click += new System.EventHandler(this.testReassignButton_Click);
+            // 
+            // materialsDataGridView
+            // 
+            this.materialsDataGridView.AutoGenerateColumns = false;
+            this.materialsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.materialsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.materialsDataGridView.DataSource = this.materialsBindingSource;
+            this.materialsDataGridView.Location = new System.Drawing.Point(11, 138);
+            this.materialsDataGridView.Name = "materialsDataGridView";
+            this.materialsDataGridView.RowHeadersWidth = 51;
+            this.materialsDataGridView.RowTemplate.Height = 24;
+            this.materialsDataGridView.Size = new System.Drawing.Size(802, 333);
+            this.materialsDataGridView.TabIndex = 7;
             // 
             // materialNotesTextBox
             // 
@@ -235,6 +326,37 @@
             this.testPage.TabIndex = 2;
             this.testPage.Text = "Teste";
             this.testPage.UseVisualStyleBackColor = true;
+            // 
+            // testStatisticsUpdateButton
+            // 
+            this.testStatisticsUpdateButton.Location = new System.Drawing.Point(11, 401);
+            this.testStatisticsUpdateButton.Name = "testStatisticsUpdateButton";
+            this.testStatisticsUpdateButton.Size = new System.Drawing.Size(161, 44);
+            this.testStatisticsUpdateButton.TabIndex = 13;
+            this.testStatisticsUpdateButton.Text = "Computează maxime și modul Young";
+            this.testStatisticsUpdateButton.UseVisualStyleBackColor = true;
+            this.testStatisticsUpdateButton.Click += new System.EventHandler(this.testStatisticsUpdateButton_Click);
+            // 
+            // testsDataGridView
+            // 
+            this.testsDataGridView.AutoGenerateColumns = false;
+            this.testsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.testsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14});
+            this.testsDataGridView.DataSource = this.testsBindingSource;
+            this.testsDataGridView.Location = new System.Drawing.Point(11, 141);
+            this.testsDataGridView.Name = "testsDataGridView";
+            this.testsDataGridView.RowHeadersWidth = 51;
+            this.testsDataGridView.RowTemplate.Height = 24;
+            this.testsDataGridView.Size = new System.Drawing.Size(1040, 220);
+            this.testsDataGridView.TabIndex = 12;
             // 
             // testInsertButton
             // 
@@ -386,101 +508,13 @@
             this.exportPage.Text = "Export";
             this.exportPage.UseVisualStyleBackColor = true;
             // 
-            // materialsDataGridView
+            // nameDataGridViewTextBoxColumn
             // 
-            this.materialsDataGridView.AutoGenerateColumns = false;
-            this.materialsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.materialsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
-            this.materialsDataGridView.DataSource = this.materialsBindingSource;
-            this.materialsDataGridView.Location = new System.Drawing.Point(11, 138);
-            this.materialsDataGridView.Name = "materialsDataGridView";
-            this.materialsDataGridView.RowHeadersWidth = 51;
-            this.materialsDataGridView.RowTemplate.Height = 24;
-            this.materialsDataGridView.Size = new System.Drawing.Size(802, 333);
-            this.materialsDataGridView.TabIndex = 7;
-            // 
-            // testReassignButton
-            // 
-            this.testReassignButton.Location = new System.Drawing.Point(872, 177);
-            this.testReassignButton.Name = "testReassignButton";
-            this.testReassignButton.Size = new System.Drawing.Size(126, 32);
-            this.testReassignButton.TabIndex = 8;
-            this.testReassignButton.Text = "Reatribuie teste";
-            this.testReassignButton.UseVisualStyleBackColor = true;
-            this.testReassignButton.Click += new System.EventHandler(this.testReassignButton_Click);
-            // 
-            // materialDeleteButton
-            // 
-            this.materialDeleteButton.Location = new System.Drawing.Point(872, 370);
-            this.materialDeleteButton.Name = "materialDeleteButton";
-            this.materialDeleteButton.Size = new System.Drawing.Size(126, 32);
-            this.materialDeleteButton.TabIndex = 9;
-            this.materialDeleteButton.Text = "Șterge";
-            this.materialDeleteButton.UseVisualStyleBackColor = true;
-            this.materialDeleteButton.Click += new System.EventHandler(this.materialDeleteButton_Click);
-            // 
-            // testsDataGridView
-            // 
-            this.testsDataGridView.AutoGenerateColumns = false;
-            this.testsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.testsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14});
-            this.testsDataGridView.DataSource = this.testsBindingSource;
-            this.testsDataGridView.Location = new System.Drawing.Point(11, 141);
-            this.testsDataGridView.Name = "testsDataGridView";
-            this.testsDataGridView.RowHeadersWidth = 51;
-            this.testsDataGridView.RowTemplate.Height = 24;
-            this.testsDataGridView.Size = new System.Drawing.Size(1040, 220);
-            this.testsDataGridView.TabIndex = 12;
-            // 
-            // testStatisticsUpdateButton
-            // 
-            this.testStatisticsUpdateButton.Location = new System.Drawing.Point(11, 401);
-            this.testStatisticsUpdateButton.Name = "testStatisticsUpdateButton";
-            this.testStatisticsUpdateButton.Size = new System.Drawing.Size(161, 44);
-            this.testStatisticsUpdateButton.TabIndex = 13;
-            this.testStatisticsUpdateButton.Text = "Computează maxime și modul Young";
-            this.testStatisticsUpdateButton.UseVisualStyleBackColor = true;
-            this.testStatisticsUpdateButton.Click += new System.EventHandler(this.testStatisticsUpdateButton_Click);
-            // 
-            // lastTestDataGridView
-            // 
-            this.lastTestDataGridView.AutoGenerateColumns = false;
-            this.lastTestDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.lastTestDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameDataGridViewTextBoxColumn,
-            this.testDate,
-            this.testMaxForce,
-            this.testMaxStrain});
-            this.lastTestDataGridView.DataSource = this.materialsBindingSource;
-            this.lastTestDataGridView.Location = new System.Drawing.Point(11, 179);
-            this.lastTestDataGridView.Name = "lastTestDataGridView";
-            this.lastTestDataGridView.RowHeadersWidth = 51;
-            this.lastTestDataGridView.RowTemplate.Height = 24;
-            this.lastTestDataGridView.Size = new System.Drawing.Size(552, 173);
-            this.lastTestDataGridView.TabIndex = 0;
-            // 
-            // lastTestLabel
-            // 
-            this.lastTestLabel.AutoSize = true;
-            this.lastTestLabel.Location = new System.Drawing.Point(8, 141);
-            this.lastTestLabel.Name = "lastTestLabel";
-            this.lastTestLabel.Size = new System.Drawing.Size(185, 16);
-            this.lastTestLabel.TabIndex = 1;
-            this.lastTestLabel.Text = "Ultimul test al fiecărui material:";
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 125;
             // 
             // materialsBindingSource
             // 
@@ -634,37 +668,15 @@
             this.testResultsBindingSource.DataMember = "testResults";
             this.testResultsBindingSource.DataSource = this.testDatabaseDataSet;
             // 
-            // nameDataGridViewTextBoxColumn
+            // avgMaxForceButton
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // testDate
-            // 
-            this.testDate.DataPropertyName = "date";
-            this.testDate.HeaderText = "Date";
-            this.testDate.MinimumWidth = 6;
-            this.testDate.Name = "testDate";
-            this.testDate.Width = 125;
-            // 
-            // testMaxForce
-            // 
-            this.testMaxForce.DataPropertyName = "maxForce_N";
-            this.testMaxForce.HeaderText = "Max Force ";
-            this.testMaxForce.MinimumWidth = 6;
-            this.testMaxForce.Name = "testMaxForce";
-            this.testMaxForce.Width = 125;
-            // 
-            // testMaxStrain
-            // 
-            this.testMaxStrain.DataPropertyName = "maxStrain";
-            this.testMaxStrain.HeaderText = "Max Strain";
-            this.testMaxStrain.MinimumWidth = 6;
-            this.testMaxStrain.Name = "testMaxStrain";
-            this.testMaxStrain.Width = 125;
+            this.avgMaxForceButton.Location = new System.Drawing.Point(872, 272);
+            this.avgMaxForceButton.Name = "avgMaxForceButton";
+            this.avgMaxForceButton.Size = new System.Drawing.Size(136, 45);
+            this.avgMaxForceButton.TabIndex = 10;
+            this.avgMaxForceButton.Text = "Calculează forța maximă medie";
+            this.avgMaxForceButton.UseVisualStyleBackColor = true;
+            this.avgMaxForceButton.Click += new System.EventHandler(this.avgMaxForceButton_Click);
             // 
             // mainForm
             // 
@@ -679,15 +691,15 @@
             this.tabControl.ResumeLayout(false);
             this.dashboardPage.ResumeLayout(false);
             this.dashboardPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lastTestDataGridView)).EndInit();
             this.materialPage.ResumeLayout(false);
             this.materialPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsDataGridView)).EndInit();
             this.testPage.ResumeLayout(false);
             this.testPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.testsDataGridView)).EndInit();
             this.testResultPage.ResumeLayout(false);
             this.testResultPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lastTestDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).EndInit();
@@ -757,6 +769,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn testDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn testMaxForce;
         private System.Windows.Forms.DataGridViewTextBoxColumn testMaxStrain;
+        private System.Windows.Forms.Button avgMaxForceButton;
     }
 }
 

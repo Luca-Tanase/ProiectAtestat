@@ -8,18 +8,18 @@
   <Shapes>
     <Shape ID="DesignTable:materials" ZOrder="3" X="18" Y="61" Height="319" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
     <Shape ID="DesignTable:testResults" ZOrder="2" X="734" Y="59" Height="273" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="168" />
-    <Shape ID="DesignTable:tests" ZOrder="1" X="380" Y="60" Height="365" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
+    <Shape ID="DesignTable:tests" ZOrder="1" X="379" Y="58" Height="365" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:tests_testResults" ZOrder="5" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>680</X>
-          <Y>167</Y>
+          <X>679</X>
+          <Y>165</Y>
         </Point>
         <Point>
           <X>734</X>
-          <Y>167</Y>
+          <Y>165</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -27,11 +27,11 @@
       <RoutePoints>
         <Point>
           <X>318</X>
-          <Y>150</Y>
+          <Y>148</Y>
         </Point>
         <Point>
-          <X>380</X>
-          <Y>150</Y>
+          <X>379</X>
+          <Y>148</Y>
         </Point>
       </RoutePoints>
     </Connector>
