@@ -2088,35 +2088,44 @@ SELECT id, name, type, density_kg_m3, YoungModulus_GPa, notes FROM materials WHE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id, name, type, density_kg_m3, YoungModulus_GPa, notes FROM dbo.materials";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM materials\r\nWHERE  (id = @materialId)";
+            this._commandCollection[1].CommandText = @"SELECT materials.name, tests.date, tests.maxForce_N, tests.maxStrain
+FROM     materials LEFT OUTER JOIN
+                  tests ON materials.id = tests.materialId AND tests.date =
+                      (SELECT MAX(date) AS Expr1
+                       FROM      tests
+                       WHERE   (materialId = materials.id))";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@materialId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO materials\r\n                  (name, type, density_kg_m3, YoungModulus" +
-                "_GPa, notes)\r\nVALUES (@name,@type,@density_kg_m3,@YoungModulus_GPa,@notes); ";
+            this._commandCollection[2].CommandText = "DELETE FROM materials\r\nWHERE  (id = @materialId)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@density_kg_m3", global::System.Data.SqlDbType.Decimal, 5, global::System.Data.ParameterDirection.Input, 8, 3, "density_kg_m3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YoungModulus_GPa", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 12, 2, "YoungModulus_GPa", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@materialId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "INSERT INTO materials\r\n                  (name, type, density_kg_m3, YoungModulus" +
-                "_GPa)\r\nVALUES (@name,@type,@density_kg_m3,@YoungModulus_GPa);   ";
+                "_GPa, notes)\r\nVALUES (@name,@type,@density_kg_m3,@YoungModulus_GPa,@notes); ";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@density_kg_m3", global::System.Data.SqlDbType.Decimal, 5, global::System.Data.ParameterDirection.Input, 8, 3, "density_kg_m3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YoungModulus_GPa", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 12, 2, "YoungModulus_GPa", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "INSERT INTO materials\r\n                  (name, type, density_kg_m3, YoungModulus" +
+                "_GPa)\r\nVALUES (@name,@type,@density_kg_m3,@YoungModulus_GPa);   ";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@density_kg_m3", global::System.Data.SqlDbType.Decimal, 5, global::System.Data.ParameterDirection.Input, 8, 3, "density_kg_m3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YoungModulus_GPa", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 12, 2, "YoungModulus_GPa", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2138,6 +2147,30 @@ SELECT id, name, type, density_kg_m3, YoungModulus_GPa, notes FROM materials WHE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual TestDatabaseDataSet.materialsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            TestDatabaseDataSet.materialsDataTable dataTable = new TestDatabaseDataSet.materialsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int GetLatestTests(TestDatabaseDataSet.materialsDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual TestDatabaseDataSet.materialsDataTable GetDataBy3() {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             TestDatabaseDataSet.materialsDataTable dataTable = new TestDatabaseDataSet.materialsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -2336,7 +2369,7 @@ SELECT id, name, type, density_kg_m3, YoungModulus_GPa, notes FROM materials WHE
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
         public virtual int MaterialDelete(int materialId) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             command.Parameters[0].Value = ((int)(materialId));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2360,7 +2393,7 @@ SELECT id, name, type, density_kg_m3, YoungModulus_GPa, notes FROM materials WHE
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int MaterialInsert(string name, string type, decimal density_kg_m3, decimal YoungModulus_GPa, string notes) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
             }
@@ -2403,7 +2436,7 @@ SELECT id, name, type, density_kg_m3, YoungModulus_GPa, notes FROM materials WHE
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int TestMaterialInsert(string name, string type, decimal density_kg_m3, decimal YoungModulus_GPa) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
             }

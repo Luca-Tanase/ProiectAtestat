@@ -7,6 +7,39 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
+        private void LoadDashboard()
+        {
+            lastTestDataGridView.ReadOnly = true;
+            lastTestDataGridView.AllowUserToAddRows = false;
+            lastTestDataGridView.AllowUserToDeleteRows = false;
+            lastTestDataGridView.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
+
+            materialsTableAdapter.GetLatestTests(testDatabaseDataSet.materials);
+            DataTable table = testDatabaseDataSet.materials;
+
+            lastTestDataGridView.DataSource = table;
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl.SelectedTab == dashboardPage)
+            {
+                LoadDashboard();
+            }
+            else if (tabControl.SelectedTab == materialPage)
+            {
+                materialsTableAdapter.Fill(testDatabaseDataSet.materials);
+            }
+            else if (tabControl.SelectedTab == testPage)
+            {
+                testsTableAdapter.Fill(testDatabaseDataSet.tests);
+            }
+            else if (tabControl.SelectedTab == testResultPage)
+            {
+                //testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
+            }
+        }
         private void GenerateTestData()
         {
             materialsTableAdapter.TestMaterialInsert("Steel S235", "Metal", 7850, 210);
@@ -17,14 +50,12 @@ namespace ProiectAtestat
             for(int i=1; i<=10; i++)
             {
                 testsTableAdapter.TestTestInsert("Tensile Test", (i % 4) + 1);
+                for (int j = 0; j <= 100; j++)
+                {
+                    testResultsTableAdapter.TestTestResultInsert(j, j * 50, (decimal)(j * 0.0005), i);
+                }
+                testsTableAdapter.TestStatisticsUpdate(i);
             }
-
-            for(int i=0; i<=100; i++)
-            {
-                testResultsTableAdapter.TestTestResultInsert(i, i * 50, (decimal)(i * 0.0005), 1);
-            }
-
-            testsTableAdapter.TestStatisticsUpdate(1);
 
             materialsTableAdapter.Fill(testDatabaseDataSet.materials);
             testsTableAdapter.Fill(testDatabaseDataSet.tests);
@@ -98,6 +129,8 @@ namespace ProiectAtestat
             GenerateTestData();
 
             SetEnterLeaveTextBoxes();
+
+            LoadDashboard();
         }
 
         private void materialInsertButton_Click(object sender, EventArgs e)
