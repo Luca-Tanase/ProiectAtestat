@@ -104,6 +104,22 @@ FROM     materials LEFT OUTER JOIN
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="GetMaxForceTests" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy5" GeneratorSourceName="GetMaxForceTests" GetMethodModifier="Public" GetMethodName="GetDataBy5" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="GetMaxForceTests">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT materials.id, materials.name, tests.type, tests.date, tests.maxForce_N
+FROM     materials INNER JOIN
+                  tests ON materials.id = tests.materialId
+WHERE  (tests.id IN
+                      (SELECT TOP (3) tests_1.id
+                       FROM      tests AS tests_1
+                       WHERE   (tests.materialId = tests_1.materialId)
+                       ORDER BY maxForce_N DESC))
+ORDER BY materials.id, tests.maxForce_N DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="MaterialDelete" Modifier="Public" Name="MaterialDelete" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="MaterialDelete">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">

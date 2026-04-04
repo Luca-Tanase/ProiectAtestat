@@ -89,6 +89,7 @@
             this.testsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.testsTableAdapter();
             this.testResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.avgMaxForceButton = new System.Windows.Forms.Button();
+            this.maxForceTestsButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.dashboardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lastTestDataGridView)).BeginInit();
@@ -186,6 +187,7 @@
             // 
             // materialPage
             // 
+            this.materialPage.Controls.Add(this.maxForceTestsButton);
             this.materialPage.Controls.Add(this.avgMaxForceButton);
             this.materialPage.Controls.Add(this.materialDeleteButton);
             this.materialPage.Controls.Add(this.testReassignButton);
@@ -208,7 +210,7 @@
             // 
             // materialDeleteButton
             // 
-            this.materialDeleteButton.Location = new System.Drawing.Point(872, 370);
+            this.materialDeleteButton.Location = new System.Drawing.Point(872, 138);
             this.materialDeleteButton.Name = "materialDeleteButton";
             this.materialDeleteButton.Size = new System.Drawing.Size(126, 32);
             this.materialDeleteButton.TabIndex = 9;
@@ -218,7 +220,7 @@
             // 
             // testReassignButton
             // 
-            this.testReassignButton.Location = new System.Drawing.Point(872, 177);
+            this.testReassignButton.Location = new System.Drawing.Point(872, 211);
             this.testReassignButton.Name = "testReassignButton";
             this.testReassignButton.Size = new System.Drawing.Size(126, 32);
             this.testReassignButton.TabIndex = 8;
@@ -670,13 +672,23 @@
             // 
             // avgMaxForceButton
             // 
-            this.avgMaxForceButton.Location = new System.Drawing.Point(872, 272);
+            this.avgMaxForceButton.Location = new System.Drawing.Point(872, 328);
             this.avgMaxForceButton.Name = "avgMaxForceButton";
-            this.avgMaxForceButton.Size = new System.Drawing.Size(136, 45);
+            this.avgMaxForceButton.Size = new System.Drawing.Size(126, 45);
             this.avgMaxForceButton.TabIndex = 10;
             this.avgMaxForceButton.Text = "Calculează forța maximă medie";
             this.avgMaxForceButton.UseVisualStyleBackColor = true;
             this.avgMaxForceButton.Click += new System.EventHandler(this.avgMaxForceButton_Click);
+            // 
+            // maxForceTestsButton
+            // 
+            this.maxForceTestsButton.Location = new System.Drawing.Point(872, 403);
+            this.maxForceTestsButton.Name = "maxForceTestsButton";
+            this.maxForceTestsButton.Size = new System.Drawing.Size(126, 45);
+            this.maxForceTestsButton.TabIndex = 11;
+            this.maxForceTestsButton.Text = "Afișare teste cu forță maximă";
+            this.maxForceTestsButton.UseVisualStyleBackColor = true;
+            this.maxForceTestsButton.Click += new System.EventHandler(this.maxForceTestsButton_Click);
             // 
             // mainForm
             // 
@@ -770,6 +782,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn testMaxForce;
         private System.Windows.Forms.DataGridViewTextBoxColumn testMaxStrain;
         private System.Windows.Forms.Button avgMaxForceButton;
+        private System.Windows.Forms.Button maxForceTestsButton;
     }
 }
 

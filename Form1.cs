@@ -246,5 +246,13 @@ namespace ProiectAtestat
                 //materialsTableAdapter.Fill(testDatabaseDataSet.materials);
             }
         }
+
+        private void maxForceTestsButton_Click(object sender, EventArgs e)
+        {
+            using (MaxForceTestsForm form = new MaxForceTestsForm())
+            {
+                form.ShowDialog();
+            }
+        }
     }
 }
