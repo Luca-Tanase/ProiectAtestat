@@ -153,7 +153,7 @@ namespace ProiectAtestat
             testsTableAdapter.TestInsert(
                 testTypeTextBox.Text,
                 testNotesTextBox.Text,
-                int.TryParse(testMaterialIdTextBox.Text, out int materialId) ? materialId : 0
+                int.TryParse(testMaterialIdTextBox.Text, out int materialId) ? materialId : 1
             );
 
             testsTableAdapter.Fill(testDatabaseDataSet.tests);
@@ -167,7 +167,7 @@ namespace ProiectAtestat
                 decimal.TryParse(testResultForceTextBox.Text, out decimal force) ? force : 0,
                 decimal.TryParse(testResultStrainTextBox.Text, out decimal strain) ? strain : 0,
                 testResultNotesTextBox.Text,
-                int.TryParse(testResultTestIdTextBox.Text, out int testId) ? testId : 0
+                int.TryParse(testResultTestIdTextBox.Text, out int testId) ? testId : 1
             );
 
             testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
