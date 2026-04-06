@@ -7,6 +7,9 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
+        private Panel currentPanel = null;
+
+        private BindingSource materialsComboBindingSource = new BindingSource();
         private void LoadDashboard()
         {
             lastTestDataGridView.ReadOnly = true;
@@ -124,6 +127,12 @@ namespace ProiectAtestat
             // TODO: This line of code loads data into the 'testDatabaseDataSet.materials' table. You can move, or remove it, as needed.
             this.materialsTableAdapter.Fill(this.testDatabaseDataSet.materials);
 
+            materialsComboBindingSource.DataSource = testDatabaseDataSet.materials;
+
+            targetMaterialComboBox.DataSource = materialsComboBindingSource;
+            targetMaterialComboBox.DisplayMember = "name";
+            targetMaterialComboBox.ValueMember = "id";
+
             testDatabaseDataSet.EnforceConstraints = false;
 
             GenerateTestData();
@@ -173,31 +182,45 @@ namespace ProiectAtestat
             testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
         }
 
+        private void materialsInputDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (materialsInputDataGridView.CurrentRow != null)
+            {
+                sourceMaterialNameLabel.Text = "De la materialul: " + materialsInputDataGridView.CurrentRow.Cells["materialsInputName"].Value.ToString();
+            }
+        }
+
         private void testReassignButton_Click(object sender, EventArgs e)
         {
-            if (materialsBindingSource.Current == null)
+            if (materialsBindingSource.Current == null){
+                MessageBox.Show(
+                $"Te rog selectează un rând al tabelului",
+                "Atenționare");
+
                 return;
-
-            DataRowView currentRow = (DataRowView)materialsBindingSource.Current;
-
-            int sourceMaterialId = (int)currentRow["id"];
-            string sourceMaterialName = currentRow["name"].ToString();
-
-            using (ReassignTestsForm dlg = new ReassignTestsForm())
-            {
-                dlg.SourceMaterialId = sourceMaterialId;
-                dlg.SourceMaterialName = sourceMaterialName;
-
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    testsTableAdapter.ReassignTests(
-                        dlg.TargetMaterialId,
-                        sourceMaterialId
-                    );
-
-                    testsTableAdapter.Fill(testDatabaseDataSet.tests);
-                }
             }
+
+            if (currentPanel != null)
+                currentPanel.Visible = false;
+
+            reassignPanel.Visible = true;
+            currentPanel = reassignPanel;
+        }
+
+        private void cancelReassignButton_Click(object sender, EventArgs e)
+        {
+            reassignPanel.Visible = false;
+            currentPanel = null;
+        }
+
+        private void confirmReassignButton_Click(object sender, EventArgs e)
+        {
+            if (targetMaterialComboBox.SelectedIndex < 0) MessageBox.Show(
+                $"Te rog selectează un material din baza de date",
+                "Atenționare");
+
+            testsTableAdapter.ReassignTests((int)targetMaterialComboBox.SelectedValue, 
+                (int)((DataRowView)materialsBindingSource.Current)["id"]);
         }
 
         private void materialDeleteButton_Click(object sender, EventArgs e)
