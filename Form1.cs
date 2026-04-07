@@ -120,12 +120,21 @@ namespace ProiectAtestat
 
         private void mainForm_Load(object sender, System.EventArgs e)
         {
+            // TODO: This line of code loads data into the 'testDatabaseDataSet.materialsMaxForceTests' table. You can move, or remove it, as needed.
+            this.materialsMaxForceTestsTableAdapter.GetMaxForceTests(this.testDatabaseDataSet.materialsMaxForceTests);
             // TODO: This line of code loads data into the 'testDatabaseDataSet.tests' table. You can move, or remove it, as needed.
             this.testsTableAdapter.Fill(this.testDatabaseDataSet.tests);
             // TODO: This line of code loads data into the 'testDatabaseDataSet.testResults' table. You can move, or remove it, as needed.
             this.testResultsTableAdapter.Fill(this.testDatabaseDataSet.testResults);
             // TODO: This line of code loads data into the 'testDatabaseDataSet.materials' table. You can move, or remove it, as needed.
             this.materialsTableAdapter.Fill(this.testDatabaseDataSet.materials);
+
+            materialsOutputDataGridView.DataSource = testDatabaseDataSet.materials;
+            materialsOutputDataGridView.ReadOnly = true;
+            materialsOutputDataGridView.AllowUserToAddRows = false;
+            materialsOutputDataGridView.AllowUserToDeleteRows = false;
+            materialsOutputDataGridView.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
 
             materialsComboBindingSource.DataSource = testDatabaseDataSet.materials;
 
@@ -262,20 +271,53 @@ namespace ProiectAtestat
 
         private void avgMaxForceButton_Click(object sender, EventArgs e)
         {
-            using (AvgMaxForceForm form = new AvgMaxForceForm())
-            {
-                form.ShowDialog();
-                 
-                //materialsTableAdapter.Fill(testDatabaseDataSet.materials);
-            }
+            if (currentPanel != null)
+                currentPanel.Visible = false;
+
+            averageForcePanel.Visible = true;
+            currentPanel = averageForcePanel;
         }
 
         private void maxForceTestsButton_Click(object sender, EventArgs e)
         {
-            using (MaxForceTestsForm form = new MaxForceTestsForm())
-            {
-                form.ShowDialog();
-            }
+            if (currentPanel != null)
+                currentPanel.Visible = false;
+
+            maxForceTestsPanel.Visible = true;
+            currentPanel = maxForceTestsPanel;
+
+            DataTable table = materialsMaxForceTestsTableAdapter.GetMaxForceTestsTable();
+
+            materialsOutputDataGridView.DataSource = table;
+        }
+
+        private void showResultButton_Click(object sender, EventArgs e)
+        {
+            DataTable table = materialsForceFilteredTableAdapter.GetAvgMaxForceTable(
+                decimal.TryParse(minAvgForceTextBox.Text, out decimal minAvgMaxForce) ? minAvgMaxForce : 0,
+                int.TryParse(minNumTestsTextBox.Text, out int minNumTests) ? minNumTests : 0
+            );
+
+            materialsOutputDataGridView.DataSource = table;
+        }
+
+        private void findForceVariationButton_Click(object sender, EventArgs e)
+        {
+            if (currentPanel != null)
+                currentPanel.Visible = false;
+
+            forceVariationPanel.Visible = true;
+            currentPanel = forceVariationPanel;
+        }
+
+        private void showVariationResultButton_Click(object sender, EventArgs e)
+        {
+            DataTable table = materialsForceVariationTableAdapter.GetForceVariationTable(
+                decimal.TryParse(minForceVariationTextBox.Text, out decimal minForce) ? minForce : 0,
+                decimal.TryParse(minTestNumTextBox.Text, out decimal minTests) ? minTests : 0
+            );
+
+            materialsOutputDataGridView.DataSource = table;
         }
     }
 }
