@@ -210,6 +210,16 @@ SELECT id, time_s, force_N, strain, notes, testId FROM testResults WHERE (id = @
               <Mapping SourceColumn="testId" DataSetColumn="testId" />
             </Mappings>
             <Sources>
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="dbo.testResults" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="GetResultsWithNotes" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetResultsWithNotesTable" GeneratorSourceName="GetResultsWithNotes" GetMethodModifier="Public" GetMethodName="GetResultsWithNotesTable" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetResultsWithNotesTable" UserSourceName="GetResultsWithNotes">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT id, time_s, force_N, strain, notes, testId
+FROM     testResults
+WHERE  (notes IS NOT NULL)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestResultInsert" Modifier="Public" Name="TestResultInsert" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="TestResultInsert">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">

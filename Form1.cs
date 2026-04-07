@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ProiectAtestat
@@ -10,6 +13,19 @@ namespace ProiectAtestat
         private Panel currentPanel = null;
 
         private BindingSource materialsComboBindingSource = new BindingSource();
+        private void PopulateTableComboBox(ComboBox combo)
+        {
+            combo.Items.Clear();
+
+            combo.Items.Add(new KeyValuePair<string, string>("Materiale", "materials"));
+            combo.Items.Add(new KeyValuePair<string, string>("Teste", "tests"));
+            combo.Items.Add(new KeyValuePair<string, string>("Rezultate teste", "testResults"));
+
+            combo.DisplayMember = "Key";
+            combo.ValueMember = "Value";
+
+            combo.SelectedIndex = 0;
+        }
         private void LoadDashboard()
         {
             lastTestDataGridView.ReadOnly = true;
@@ -22,6 +38,8 @@ namespace ProiectAtestat
             DataTable table = testDatabaseDataSet.materials;
 
             lastTestDataGridView.DataSource = table;
+
+            PopulateTableComboBox(fileImportComboBox);
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,7 +58,7 @@ namespace ProiectAtestat
             }
             else if (tabControl.SelectedTab == testResultPage)
             {
-                //testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
+                testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
             }
         }
         private void GenerateTestData()
@@ -142,6 +160,8 @@ namespace ProiectAtestat
             targetMaterialComboBox.DisplayMember = "name";
             targetMaterialComboBox.ValueMember = "id";
 
+            PopulateTableComboBox(tableExportComboBox);
+
             testDatabaseDataSet.EnforceConstraints = false;
 
             GenerateTestData();
@@ -159,7 +179,7 @@ namespace ProiectAtestat
                 materialTypeTextBox.Text,
                 decimal.TryParse(materialDensityTextBox.Text, out decimal density) ? density : 0,
                 decimal.TryParse(materialYoungModulusTextBox.Text, out decimal youngModulus) ? youngModulus : 0,
-                materialNotesTextBox.Text
+                !string.IsNullOrEmpty(materialNotesTextBox.Text) ? materialNotesTextBox.Text : null
             );
 
             materialsTableAdapter.Fill(testDatabaseDataSet.materials);
@@ -318,6 +338,322 @@ namespace ProiectAtestat
             );
 
             materialsOutputDataGridView.DataSource = table;
+        }
+
+        private void defaultNotesButton_Click(object sender, EventArgs e)
+        {
+            testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
+        }
+
+        private void hasNotesButton_Click(object sender, EventArgs e)
+        {
+            testResultsTableAdapter.GetResultsWithNotes(testDatabaseDataSet.testResults);
+        }
+        private string[] GetHeadersForTable(string tableName)
+        {
+            switch (tableName)
+            {
+                case "materials":
+                    return new string[]
+                    {
+                "name",
+                "type",
+                "density",
+                "youngModulus",
+                "notes"
+                    };
+
+                case "tests":
+                    return new string[]
+                    {
+                "type",
+                "notes",
+                "materialId"
+                    };
+
+                case "testResults":
+                    return new string[]
+                    {
+                "time_s",
+                "force_N",
+                "strain",
+                "notes",
+                "testId"
+                    };
+
+                default:
+                    return null;
+            }
+        }
+        private void fileImportButton_Click(object sender, EventArgs e)
+        {
+            if (fileImportComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Selectați mai întâi tabelul în care doriți să importați datele.");
+                return;
+            }
+
+            string tableName = ((KeyValuePair<string, string>)fileImportComboBox.SelectedItem).Value;
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Fișiere CSV|*.csv";
+            if (ofd.ShowDialog() != DialogResult.OK)
+                return;
+
+            string[] lines;
+
+            try
+            {
+                lines = File.ReadAllLines(ofd.FileName);
+                if (lines.Length < 2)
+                {
+                    MessageBox.Show("Fișierul CSV este gol sau nu are date.");
+                    return;
+                }
+
+                // Expected headers based on table
+                string[] expectedHeaders = GetHeadersForTable(tableName);
+
+                if (expectedHeaders == null)
+                {
+                    MessageBox.Show("Tabel necunoscut.");
+                    return;
+                }
+
+                // Validate CSV header
+                string[] headers = lines[0].Split(',');
+                if (!headers.Select(h => h.Trim()).SequenceEqual(expectedHeaders))
+                {
+                    MessageBox.Show($"Antet CSV invalid. Se așteaptă: {string.Join(",", expectedHeaders)}");
+                    return;
+                }
+
+                int successCount = 0;
+                int failCount = 0;
+
+                // Insert rows
+                for (int i = 1; i < lines.Length; i++)
+                {
+                    string[] parts = lines[i].Split(',');
+                    if (parts.Length != expectedHeaders.Length)
+                    {
+                        failCount++;
+                        continue;
+                    }
+
+                    try
+                    {
+                        switch (tableName)
+                        {
+                            case "materials":
+                                string name = parts[0].Trim();
+                                string type = parts[1].Trim();
+                                decimal density = decimal.Parse(parts[2].Trim());
+                                decimal youngModulus = decimal.Parse(parts[3].Trim());
+                                string notes = string.IsNullOrWhiteSpace(parts[4]) ? null : parts[4].Trim();
+                                materialsTableAdapter.MaterialInsert(name, type, density, youngModulus, notes);
+                                break;
+
+                            case "tests":
+                                string testType = parts[0].Trim();
+                                string testNotes = string.IsNullOrWhiteSpace(parts[1]) ? null : parts[1].Trim();
+                                int materialId = int.Parse(parts[2].Trim());
+                                testsTableAdapter.TestInsert(testType, testNotes, materialId);
+                                break;
+
+                            case "testResults":
+                                int time_s = int.Parse(parts[0].Trim());
+                                decimal force_N = decimal.Parse(parts[1].Trim());
+                                decimal strain = decimal.Parse(parts[2].Trim());
+                                string resultNotes = string.IsNullOrWhiteSpace(parts[3]) ? null : parts[3].Trim();
+                                int testId = int.Parse(parts[4].Trim());
+                                testResultsTableAdapter.TestResultInsert(time_s, force_N, strain, resultNotes, testId);
+                                break;
+                        }
+
+                        successCount++;
+                    }
+                    catch
+                    {
+                        failCount++;
+                    }
+                }
+
+                MessageBox.Show($"Import finalizat pentru tabelul {tableName}.\nReușite: {successCount}\nEșuate: {failCount}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Eroare la citirea fișierului: " + ex.Message);
+            }
+        }
+
+        private void fileModelDownload_Click(object sender, EventArgs e)
+        {
+            if (fileImportComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Selectați tabelul.");
+                return;
+            }
+
+            string tableName =
+                ((KeyValuePair<string, string>)fileImportComboBox.SelectedItem).Value;
+
+            string[] headers = GetHeadersForTable(tableName);
+
+            if (headers == null)
+            {
+                MessageBox.Show("Tabel necunoscut.");
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "CSV files (*.csv)|*.csv";
+            sfd.FileName = tableName + "_template.csv";
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
+            {
+                string headerLine = string.Join(",", headers);
+
+                File.WriteAllText(
+                    sfd.FileName,
+                    headerLine + Environment.NewLine
+                );
+
+                MessageBox.Show("Template CSV creat cu succes.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Eroare la salvare: " + ex.Message);
+            }
+        }
+        private DataTable GetDataTableForExport(string tableName)
+        {
+            switch (tableName)
+            {
+                case "materials":
+                    return testDatabaseDataSet.materials;
+
+                case "tests":
+                    return testDatabaseDataSet.tests;
+
+                case "testResults":
+                    return testDatabaseDataSet.testResults;
+
+                default:
+                    return null;
+            }
+        }
+        private void ExportDataTableToCSV(DataTable table, string filePath)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                // Write headers
+                for (int i = 0; i < table.Columns.Count; i++)
+                {
+                    writer.Write(table.Columns[i].ColumnName);
+
+                    if (i < table.Columns.Count - 1)
+                        writer.Write(",");
+                }
+
+                writer.WriteLine();
+
+                // Write rows
+                foreach (DataRow row in table.Rows)
+                {
+                    for (int i = 0; i < table.Columns.Count; i++)
+                    {
+                        object value = row[i];
+
+                        if (value != DBNull.Value)
+                            writer.Write(value.ToString());
+
+                        if (i < table.Columns.Count - 1)
+                            writer.Write(",");
+                    }
+
+                    writer.WriteLine();
+                }
+            }
+        }
+        // Alternative method if you want to export directly from a DataGridView
+        private void ExportDataGridViewToCSV(
+    DataGridView grid,
+    string filePath)
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                // Write headers
+                for (int i = 0; i < grid.Columns.Count; i++)
+                {
+                    writer.Write(grid.Columns[i].HeaderText);
+
+                    if (i < grid.Columns.Count - 1)
+                        writer.Write(",");
+                }
+
+                writer.WriteLine();
+
+                // Write rows
+                foreach (DataGridViewRow row in grid.Rows)
+                {
+                    if (row.IsNewRow)
+                        continue;
+
+                    for (int i = 0; i < grid.Columns.Count; i++)
+                    {
+                        object value = row.Cells[i].Value;
+
+                        if (value != null)
+                            writer.Write(value.ToString());
+
+                        if (i < grid.Columns.Count - 1)
+                            writer.Write(",");
+                    }
+
+                    writer.WriteLine();
+                }
+            }
+        }
+
+        private void exportTableButton_Click(object sender, EventArgs e)
+        {
+            if (tableExportComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Selectați tabelul.");
+                return;
+            }
+
+            string tableName =
+                ((KeyValuePair<string, string>)tableExportComboBox.SelectedItem).Value;
+
+            DataTable tableToExport = GetDataTableForExport(tableName);
+
+            if (tableToExport == null)
+            {
+                MessageBox.Show("Tabel necunoscut.");
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "CSV files (*.csv)|*.csv";
+            sfd.FileName = tableName + "_export.csv";
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+                return;
+
+            try
+            {
+                ExportDataTableToCSV(tableToExport, sfd.FileName);
+                MessageBox.Show("Export realizat cu succes.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Eroare la export: " + ex.Message);
+            }
         }
     }
 }
