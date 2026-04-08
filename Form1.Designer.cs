@@ -29,16 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.dashboardPage = new System.Windows.Forms.TabPage();
+            this.fileModelDownload = new System.Windows.Forms.Button();
+            this.fileImportButton = new System.Windows.Forms.Button();
+            this.fileImportComboBox = new System.Windows.Forms.ComboBox();
+            this.fileImportLabel = new System.Windows.Forms.Label();
             this.lastTestLabel = new System.Windows.Forms.Label();
             this.lastTestDataGridView = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testMaxForce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testMaxStrain = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.testDatabaseDataSet = new ProiectAtestat.TestDatabaseDataSet();
             this.materialPage = new System.Windows.Forms.TabPage();
             this.forceVariationPanel = new System.Windows.Forms.Panel();
             this.showVariationResultButton = new System.Windows.Forms.Button();
@@ -70,12 +74,6 @@
             this.materialDeleteButton = new System.Windows.Forms.Button();
             this.testReassignButton = new System.Windows.Forms.Button();
             this.materialsInputDataGridView = new System.Windows.Forms.DataGridView();
-            this.materialsInputId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputDensity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputYoungModulus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialNotesTextBox = new System.Windows.Forms.TextBox();
             this.materialInsertButton = new System.Windows.Forms.Button();
             this.materialYoungModulusTextBox = new System.Windows.Forms.TextBox();
@@ -86,15 +84,6 @@
             this.testPage = new System.Windows.Forms.TabPage();
             this.testStatisticsUpdateButton = new System.Windows.Forms.Button();
             this.testsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testInsertButton = new System.Windows.Forms.Button();
             this.testMaterialIdTextBox = new System.Windows.Forms.TextBox();
             this.testNotesTextBox = new System.Windows.Forms.TextBox();
@@ -104,13 +93,6 @@
             this.hasNotesButton = new System.Windows.Forms.Button();
             this.defaultNotesButton = new System.Windows.Forms.Button();
             this.testResultsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testResultTestIdTextBox = new System.Windows.Forms.TextBox();
             this.testResultInsertButton = new System.Windows.Forms.Button();
             this.testResultNotesTextBox = new System.Windows.Forms.TextBox();
@@ -119,7 +101,38 @@
             this.testResultTimeTextBox = new System.Windows.Forms.TextBox();
             this.testResultInsertLabel = new System.Windows.Forms.Label();
             this.graphPage = new System.Windows.Forms.TabPage();
+            this.executeGraphicButton = new System.Windows.Forms.Button();
+            this.chooseGraphicComboBox = new System.Windows.Forms.ComboBox();
+            this.chooseTestDataGridView = new System.Windows.Forms.DataGridView();
+            this.graphicsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.exportPage = new System.Windows.Forms.TabPage();
+            this.tableExportComboBox = new System.Windows.Forms.ComboBox();
+            this.exportTableButton = new System.Windows.Forms.Button();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.testDatabaseDataSet = new ProiectAtestat.TestDatabaseDataSet();
+            this.materialsInputId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputDensity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputYoungModulus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialsForceFilteredBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.materialsTableAdapter();
             this.tableAdapterManager = new ProiectAtestat.TestDatabaseDataSetTableAdapters.TableAdapterManager();
@@ -130,17 +143,17 @@
             this.materialsMaxForceTestsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.materialsMaxForceTestsTableAdapter();
             this.materialsForceVariationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialsForceVariationTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.materialsForceVariationTableAdapter();
-            this.fileImportLabel = new System.Windows.Forms.Label();
-            this.fileImportComboBox = new System.Windows.Forms.ComboBox();
-            this.fileImportButton = new System.Windows.Forms.Button();
-            this.fileModelDownload = new System.Windows.Forms.Button();
-            this.exportTableButton = new System.Windows.Forms.Button();
-            this.tableExportComboBox = new System.Windows.Forms.ComboBox();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxForceNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxStrainDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.youngModulusEstGPaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.dashboardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lastTestDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).BeginInit();
             this.materialPage.SuspendLayout();
             this.forceVariationPanel.SuspendLayout();
             this.maxForceTestsPanel.SuspendLayout();
@@ -150,11 +163,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.materialsInputDataGridView)).BeginInit();
             this.testPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).BeginInit();
             this.testResultPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testResultsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).BeginInit();
+            this.graphPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chooseTestDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graphicsChart)).BeginInit();
             this.exportPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsForceFilteredBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsMaxForceTestsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsForceVariationBindingSource)).BeginInit();
@@ -195,6 +213,43 @@
             this.dashboardPage.Text = "Dashboard";
             this.dashboardPage.UseVisualStyleBackColor = true;
             // 
+            // fileModelDownload
+            // 
+            this.fileModelDownload.Location = new System.Drawing.Point(675, 154);
+            this.fileModelDownload.Name = "fileModelDownload";
+            this.fileModelDownload.Size = new System.Drawing.Size(128, 30);
+            this.fileModelDownload.TabIndex = 5;
+            this.fileModelDownload.Text = "Descarcă model CSV";
+            this.fileModelDownload.UseVisualStyleBackColor = true;
+            this.fileModelDownload.Click += new System.EventHandler(this.fileModelDownload_Click);
+            // 
+            // fileImportButton
+            // 
+            this.fileImportButton.Location = new System.Drawing.Point(675, 118);
+            this.fileImportButton.Name = "fileImportButton";
+            this.fileImportButton.Size = new System.Drawing.Size(128, 30);
+            this.fileImportButton.TabIndex = 4;
+            this.fileImportButton.Text = "Importă date";
+            this.fileImportButton.UseVisualStyleBackColor = true;
+            this.fileImportButton.Click += new System.EventHandler(this.fileImportButton_Click);
+            // 
+            // fileImportComboBox
+            // 
+            this.fileImportComboBox.FormattingEnabled = true;
+            this.fileImportComboBox.Location = new System.Drawing.Point(675, 68);
+            this.fileImportComboBox.Name = "fileImportComboBox";
+            this.fileImportComboBox.Size = new System.Drawing.Size(159, 24);
+            this.fileImportComboBox.TabIndex = 3;
+            // 
+            // fileImportLabel
+            // 
+            this.fileImportLabel.AutoSize = true;
+            this.fileImportLabel.Location = new System.Drawing.Point(672, 32);
+            this.fileImportLabel.Name = "fileImportLabel";
+            this.fileImportLabel.Size = new System.Drawing.Size(186, 16);
+            this.fileImportLabel.TabIndex = 2;
+            this.fileImportLabel.Text = "Importează date din fișier CSV";
+            // 
             // lastTestLabel
             // 
             this.lastTestLabel.AutoSize = true;
@@ -221,14 +276,6 @@
             this.lastTestDataGridView.Size = new System.Drawing.Size(552, 142);
             this.lastTestDataGridView.TabIndex = 0;
             // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 125;
-            // 
             // testDate
             // 
             this.testDate.DataPropertyName = "date";
@@ -252,16 +299,6 @@
             this.testMaxStrain.MinimumWidth = 6;
             this.testMaxStrain.Name = "testMaxStrain";
             this.testMaxStrain.Width = 125;
-            // 
-            // materialsBindingSource
-            // 
-            this.materialsBindingSource.DataMember = "materials";
-            this.materialsBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
-            // testDatabaseDataSet
-            // 
-            this.testDatabaseDataSet.DataSetName = "TestDatabaseDataSet";
-            this.testDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // materialPage
             // 
@@ -591,54 +628,6 @@
             this.materialsInputDataGridView.TabIndex = 7;
             this.materialsInputDataGridView.SelectionChanged += new System.EventHandler(this.materialsInputDataGridView_SelectionChanged);
             // 
-            // materialsInputId
-            // 
-            this.materialsInputId.DataPropertyName = "id";
-            this.materialsInputId.HeaderText = "id";
-            this.materialsInputId.MinimumWidth = 6;
-            this.materialsInputId.Name = "materialsInputId";
-            this.materialsInputId.Width = 125;
-            // 
-            // materialsInputName
-            // 
-            this.materialsInputName.DataPropertyName = "name";
-            this.materialsInputName.HeaderText = "name";
-            this.materialsInputName.MinimumWidth = 6;
-            this.materialsInputName.Name = "materialsInputName";
-            this.materialsInputName.Width = 125;
-            // 
-            // materialsInputType
-            // 
-            this.materialsInputType.DataPropertyName = "type";
-            this.materialsInputType.HeaderText = "type";
-            this.materialsInputType.MinimumWidth = 6;
-            this.materialsInputType.Name = "materialsInputType";
-            this.materialsInputType.Width = 125;
-            // 
-            // materialsInputDensity
-            // 
-            this.materialsInputDensity.DataPropertyName = "density_kg_m3";
-            this.materialsInputDensity.HeaderText = "density_kg_m3";
-            this.materialsInputDensity.MinimumWidth = 6;
-            this.materialsInputDensity.Name = "materialsInputDensity";
-            this.materialsInputDensity.Width = 125;
-            // 
-            // materialsInputYoungModulus
-            // 
-            this.materialsInputYoungModulus.DataPropertyName = "YoungModulus_GPa";
-            this.materialsInputYoungModulus.HeaderText = "YoungModulus_GPa";
-            this.materialsInputYoungModulus.MinimumWidth = 6;
-            this.materialsInputYoungModulus.Name = "materialsInputYoungModulus";
-            this.materialsInputYoungModulus.Width = 125;
-            // 
-            // materialsInputNotes
-            // 
-            this.materialsInputNotes.DataPropertyName = "notes";
-            this.materialsInputNotes.HeaderText = "notes";
-            this.materialsInputNotes.MinimumWidth = 6;
-            this.materialsInputNotes.Name = "materialsInputNotes";
-            this.materialsInputNotes.Width = 125;
-            // 
             // materialNotesTextBox
             // 
             this.materialNotesTextBox.ForeColor = System.Drawing.Color.Gray;
@@ -752,75 +741,6 @@
             this.testsDataGridView.Size = new System.Drawing.Size(1040, 220);
             this.testsDataGridView.TabIndex = 12;
             // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn7.HeaderText = "id";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "type";
-            this.dataGridViewTextBoxColumn8.HeaderText = "type";
-            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "date";
-            this.dataGridViewTextBoxColumn9.HeaderText = "date";
-            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "maxForce_N";
-            this.dataGridViewTextBoxColumn10.HeaderText = "maxForce_N";
-            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "maxStrain";
-            this.dataGridViewTextBoxColumn11.HeaderText = "maxStrain";
-            this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "YoungModulusEst_GPa";
-            this.dataGridViewTextBoxColumn12.HeaderText = "YoungModulusEst_GPa";
-            this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "notes";
-            this.dataGridViewTextBoxColumn13.HeaderText = "notes";
-            this.dataGridViewTextBoxColumn13.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "materialId";
-            this.dataGridViewTextBoxColumn14.HeaderText = "materialId";
-            this.dataGridViewTextBoxColumn14.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.Width = 125;
-            // 
-            // testsBindingSource
-            // 
-            this.testsBindingSource.DataMember = "tests";
-            this.testsBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
             // testInsertButton
             // 
             this.testInsertButton.Location = new System.Drawing.Point(478, 59);
@@ -927,59 +847,6 @@
             this.testResultsDataGridView.Size = new System.Drawing.Size(800, 220);
             this.testResultsDataGridView.TabIndex = 13;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "id";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "time_s";
-            this.dataGridViewTextBoxColumn2.HeaderText = "time_s";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "force_N";
-            this.dataGridViewTextBoxColumn3.HeaderText = "force_N";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "strain";
-            this.dataGridViewTextBoxColumn4.HeaderText = "strain";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "notes";
-            this.dataGridViewTextBoxColumn5.HeaderText = "notes";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "testId";
-            this.dataGridViewTextBoxColumn6.HeaderText = "testId";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 125;
-            // 
-            // testResultsBindingSource
-            // 
-            this.testResultsBindingSource.DataMember = "testResults";
-            this.testResultsBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
             // testResultTestIdTextBox
             // 
             this.testResultTestIdTextBox.ForeColor = System.Drawing.Color.Gray;
@@ -1046,6 +913,10 @@
             // 
             // graphPage
             // 
+            this.graphPage.Controls.Add(this.executeGraphicButton);
+            this.graphPage.Controls.Add(this.chooseGraphicComboBox);
+            this.graphPage.Controls.Add(this.chooseTestDataGridView);
+            this.graphPage.Controls.Add(this.graphicsChart);
             this.graphPage.Location = new System.Drawing.Point(4, 25);
             this.graphPage.Margin = new System.Windows.Forms.Padding(4);
             this.graphPage.Name = "graphPage";
@@ -1054,6 +925,61 @@
             this.graphPage.TabIndex = 4;
             this.graphPage.Text = "Grafice";
             this.graphPage.UseVisualStyleBackColor = true;
+            // 
+            // executeGraphicButton
+            // 
+            this.executeGraphicButton.Location = new System.Drawing.Point(900, 292);
+            this.executeGraphicButton.Name = "executeGraphicButton";
+            this.executeGraphicButton.Size = new System.Drawing.Size(159, 50);
+            this.executeGraphicButton.TabIndex = 3;
+            this.executeGraphicButton.Text = "Execută grafic";
+            this.executeGraphicButton.UseVisualStyleBackColor = true;
+            this.executeGraphicButton.Click += new System.EventHandler(this.executeGraphicButton_Click);
+            // 
+            // chooseGraphicComboBox
+            // 
+            this.chooseGraphicComboBox.FormattingEnabled = true;
+            this.chooseGraphicComboBox.Location = new System.Drawing.Point(900, 70);
+            this.chooseGraphicComboBox.Name = "chooseGraphicComboBox";
+            this.chooseGraphicComboBox.Size = new System.Drawing.Size(159, 24);
+            this.chooseGraphicComboBox.TabIndex = 2;
+            // 
+            // chooseTestDataGridView
+            // 
+            this.chooseTestDataGridView.AutoGenerateColumns = false;
+            this.chooseTestDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.chooseTestDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.typeDataGridViewTextBoxColumn,
+            this.dateDataGridViewTextBoxColumn,
+            this.maxForceNDataGridViewTextBoxColumn,
+            this.maxStrainDataGridViewTextBoxColumn,
+            this.youngModulusEstGPaDataGridViewTextBoxColumn,
+            this.notesDataGridViewTextBoxColumn,
+            this.materialIdDataGridViewTextBoxColumn});
+            this.chooseTestDataGridView.DataSource = this.testsBindingSource;
+            this.chooseTestDataGridView.Location = new System.Drawing.Point(8, 400);
+            this.chooseTestDataGridView.Name = "chooseTestDataGridView";
+            this.chooseTestDataGridView.RowHeadersWidth = 51;
+            this.chooseTestDataGridView.RowTemplate.Height = 24;
+            this.chooseTestDataGridView.Size = new System.Drawing.Size(1051, 353);
+            this.chooseTestDataGridView.TabIndex = 1;
+            // 
+            // graphicsChart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.graphicsChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.graphicsChart.Legends.Add(legend1);
+            this.graphicsChart.Location = new System.Drawing.Point(7, 7);
+            this.graphicsChart.Name = "graphicsChart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.graphicsChart.Series.Add(series1);
+            this.graphicsChart.Size = new System.Drawing.Size(887, 387);
+            this.graphicsChart.TabIndex = 0;
+            this.graphicsChart.Text = "chart1";
             // 
             // exportPage
             // 
@@ -1067,6 +993,212 @@
             this.exportPage.TabIndex = 5;
             this.exportPage.Text = "Export";
             this.exportPage.UseVisualStyleBackColor = true;
+            // 
+            // tableExportComboBox
+            // 
+            this.tableExportComboBox.FormattingEnabled = true;
+            this.tableExportComboBox.Location = new System.Drawing.Point(8, 39);
+            this.tableExportComboBox.Name = "tableExportComboBox";
+            this.tableExportComboBox.Size = new System.Drawing.Size(153, 24);
+            this.tableExportComboBox.TabIndex = 1;
+            // 
+            // exportTableButton
+            // 
+            this.exportTableButton.Location = new System.Drawing.Point(261, 30);
+            this.exportTableButton.Name = "exportTableButton";
+            this.exportTableButton.Size = new System.Drawing.Size(117, 41);
+            this.exportTableButton.TabIndex = 0;
+            this.exportTableButton.Text = "Exportă";
+            this.exportTableButton.UseVisualStyleBackColor = true;
+            this.exportTableButton.Click += new System.EventHandler(this.exportTableButton_Click);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // materialsBindingSource
+            // 
+            this.materialsBindingSource.DataMember = "materials";
+            this.materialsBindingSource.DataSource = this.testDatabaseDataSet;
+            // 
+            // testDatabaseDataSet
+            // 
+            this.testDatabaseDataSet.DataSetName = "TestDatabaseDataSet";
+            this.testDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // materialsInputId
+            // 
+            this.materialsInputId.DataPropertyName = "id";
+            this.materialsInputId.HeaderText = "id";
+            this.materialsInputId.MinimumWidth = 6;
+            this.materialsInputId.Name = "materialsInputId";
+            this.materialsInputId.Width = 125;
+            // 
+            // materialsInputName
+            // 
+            this.materialsInputName.DataPropertyName = "name";
+            this.materialsInputName.HeaderText = "name";
+            this.materialsInputName.MinimumWidth = 6;
+            this.materialsInputName.Name = "materialsInputName";
+            this.materialsInputName.Width = 125;
+            // 
+            // materialsInputType
+            // 
+            this.materialsInputType.DataPropertyName = "type";
+            this.materialsInputType.HeaderText = "type";
+            this.materialsInputType.MinimumWidth = 6;
+            this.materialsInputType.Name = "materialsInputType";
+            this.materialsInputType.Width = 125;
+            // 
+            // materialsInputDensity
+            // 
+            this.materialsInputDensity.DataPropertyName = "density_kg_m3";
+            this.materialsInputDensity.HeaderText = "density_kg_m3";
+            this.materialsInputDensity.MinimumWidth = 6;
+            this.materialsInputDensity.Name = "materialsInputDensity";
+            this.materialsInputDensity.Width = 125;
+            // 
+            // materialsInputYoungModulus
+            // 
+            this.materialsInputYoungModulus.DataPropertyName = "YoungModulus_GPa";
+            this.materialsInputYoungModulus.HeaderText = "YoungModulus_GPa";
+            this.materialsInputYoungModulus.MinimumWidth = 6;
+            this.materialsInputYoungModulus.Name = "materialsInputYoungModulus";
+            this.materialsInputYoungModulus.Width = 125;
+            // 
+            // materialsInputNotes
+            // 
+            this.materialsInputNotes.DataPropertyName = "notes";
+            this.materialsInputNotes.HeaderText = "notes";
+            this.materialsInputNotes.MinimumWidth = 6;
+            this.materialsInputNotes.Name = "materialsInputNotes";
+            this.materialsInputNotes.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn7.HeaderText = "id";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "type";
+            this.dataGridViewTextBoxColumn8.HeaderText = "type";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "date";
+            this.dataGridViewTextBoxColumn9.HeaderText = "date";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "maxForce_N";
+            this.dataGridViewTextBoxColumn10.HeaderText = "maxForce_N";
+            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "maxStrain";
+            this.dataGridViewTextBoxColumn11.HeaderText = "maxStrain";
+            this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "YoungModulusEst_GPa";
+            this.dataGridViewTextBoxColumn12.HeaderText = "YoungModulusEst_GPa";
+            this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "notes";
+            this.dataGridViewTextBoxColumn13.HeaderText = "notes";
+            this.dataGridViewTextBoxColumn13.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "materialId";
+            this.dataGridViewTextBoxColumn14.HeaderText = "materialId";
+            this.dataGridViewTextBoxColumn14.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.Width = 125;
+            // 
+            // testsBindingSource
+            // 
+            this.testsBindingSource.DataMember = "tests";
+            this.testsBindingSource.DataSource = this.testDatabaseDataSet;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "time_s";
+            this.dataGridViewTextBoxColumn2.HeaderText = "time_s";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "force_N";
+            this.dataGridViewTextBoxColumn3.HeaderText = "force_N";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "strain";
+            this.dataGridViewTextBoxColumn4.HeaderText = "strain";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "notes";
+            this.dataGridViewTextBoxColumn5.HeaderText = "notes";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "testId";
+            this.dataGridViewTextBoxColumn6.HeaderText = "testId";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // testResultsBindingSource
+            // 
+            this.testResultsBindingSource.DataMember = "testResults";
+            this.testResultsBindingSource.DataSource = this.testDatabaseDataSet;
             // 
             // materialsForceFilteredBindingSource
             // 
@@ -1115,60 +1247,69 @@
             // 
             this.materialsForceVariationTableAdapter.ClearBeforeFill = true;
             // 
-            // fileImportLabel
+            // id
             // 
-            this.fileImportLabel.AutoSize = true;
-            this.fileImportLabel.Location = new System.Drawing.Point(672, 32);
-            this.fileImportLabel.Name = "fileImportLabel";
-            this.fileImportLabel.Size = new System.Drawing.Size(186, 16);
-            this.fileImportLabel.TabIndex = 2;
-            this.fileImportLabel.Text = "Importează date din fișier CSV";
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.MinimumWidth = 6;
+            this.id.Name = "id";
+            this.id.Width = 125;
             // 
-            // fileImportComboBox
+            // typeDataGridViewTextBoxColumn
             // 
-            this.fileImportComboBox.FormattingEnabled = true;
-            this.fileImportComboBox.Location = new System.Drawing.Point(675, 68);
-            this.fileImportComboBox.Name = "fileImportComboBox";
-            this.fileImportComboBox.Size = new System.Drawing.Size(159, 24);
-            this.fileImportComboBox.TabIndex = 3;
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "type";
+            this.typeDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.Width = 125;
             // 
-            // fileImportButton
+            // dateDataGridViewTextBoxColumn
             // 
-            this.fileImportButton.Location = new System.Drawing.Point(675, 118);
-            this.fileImportButton.Name = "fileImportButton";
-            this.fileImportButton.Size = new System.Drawing.Size(128, 30);
-            this.fileImportButton.TabIndex = 4;
-            this.fileImportButton.Text = "Importă date";
-            this.fileImportButton.UseVisualStyleBackColor = true;
-            this.fileImportButton.Click += new System.EventHandler(this.fileImportButton_Click);
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "date";
+            this.dateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.Width = 125;
             // 
-            // fileModelDownload
+            // maxForceNDataGridViewTextBoxColumn
             // 
-            this.fileModelDownload.Location = new System.Drawing.Point(675, 154);
-            this.fileModelDownload.Name = "fileModelDownload";
-            this.fileModelDownload.Size = new System.Drawing.Size(128, 30);
-            this.fileModelDownload.TabIndex = 5;
-            this.fileModelDownload.Text = "Descarcă model CSV";
-            this.fileModelDownload.UseVisualStyleBackColor = true;
-            this.fileModelDownload.Click += new System.EventHandler(this.fileModelDownload_Click);
+            this.maxForceNDataGridViewTextBoxColumn.DataPropertyName = "maxForce_N";
+            this.maxForceNDataGridViewTextBoxColumn.HeaderText = "maxForce_N";
+            this.maxForceNDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maxForceNDataGridViewTextBoxColumn.Name = "maxForceNDataGridViewTextBoxColumn";
+            this.maxForceNDataGridViewTextBoxColumn.Width = 125;
             // 
-            // exportTableButton
+            // maxStrainDataGridViewTextBoxColumn
             // 
-            this.exportTableButton.Location = new System.Drawing.Point(261, 30);
-            this.exportTableButton.Name = "exportTableButton";
-            this.exportTableButton.Size = new System.Drawing.Size(117, 41);
-            this.exportTableButton.TabIndex = 0;
-            this.exportTableButton.Text = "Exportă";
-            this.exportTableButton.UseVisualStyleBackColor = true;
-            this.exportTableButton.Click += new System.EventHandler(this.exportTableButton_Click);
+            this.maxStrainDataGridViewTextBoxColumn.DataPropertyName = "maxStrain";
+            this.maxStrainDataGridViewTextBoxColumn.HeaderText = "maxStrain";
+            this.maxStrainDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.maxStrainDataGridViewTextBoxColumn.Name = "maxStrainDataGridViewTextBoxColumn";
+            this.maxStrainDataGridViewTextBoxColumn.Width = 125;
             // 
-            // tableExportComboBox
+            // youngModulusEstGPaDataGridViewTextBoxColumn
             // 
-            this.tableExportComboBox.FormattingEnabled = true;
-            this.tableExportComboBox.Location = new System.Drawing.Point(8, 39);
-            this.tableExportComboBox.Name = "tableExportComboBox";
-            this.tableExportComboBox.Size = new System.Drawing.Size(153, 24);
-            this.tableExportComboBox.TabIndex = 1;
+            this.youngModulusEstGPaDataGridViewTextBoxColumn.DataPropertyName = "YoungModulusEst_GPa";
+            this.youngModulusEstGPaDataGridViewTextBoxColumn.HeaderText = "YoungModulusEst_GPa";
+            this.youngModulusEstGPaDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.youngModulusEstGPaDataGridViewTextBoxColumn.Name = "youngModulusEstGPaDataGridViewTextBoxColumn";
+            this.youngModulusEstGPaDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // notesDataGridViewTextBoxColumn
+            // 
+            this.notesDataGridViewTextBoxColumn.DataPropertyName = "notes";
+            this.notesDataGridViewTextBoxColumn.HeaderText = "notes";
+            this.notesDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.notesDataGridViewTextBoxColumn.Name = "notesDataGridViewTextBoxColumn";
+            this.notesDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // materialIdDataGridViewTextBoxColumn
+            // 
+            this.materialIdDataGridViewTextBoxColumn.DataPropertyName = "materialId";
+            this.materialIdDataGridViewTextBoxColumn.HeaderText = "materialId";
+            this.materialIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.materialIdDataGridViewTextBoxColumn.Name = "materialIdDataGridViewTextBoxColumn";
+            this.materialIdDataGridViewTextBoxColumn.Width = 125;
             // 
             // mainForm
             // 
@@ -1184,8 +1325,6 @@
             this.dashboardPage.ResumeLayout(false);
             this.dashboardPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lastTestDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).EndInit();
             this.materialPage.ResumeLayout(false);
             this.materialPage.PerformLayout();
             this.forceVariationPanel.ResumeLayout(false);
@@ -1200,12 +1339,17 @@
             this.testPage.ResumeLayout(false);
             this.testPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).EndInit();
             this.testResultPage.ResumeLayout(false);
             this.testResultPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testResultsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).EndInit();
+            this.graphPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chooseTestDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.graphicsChart)).EndInit();
             this.exportPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsForceFilteredBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsMaxForceTestsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsForceVariationBindingSource)).EndInit();
@@ -1322,6 +1466,18 @@
         private System.Windows.Forms.Button fileModelDownload;
         private System.Windows.Forms.ComboBox tableExportComboBox;
         private System.Windows.Forms.Button exportTableButton;
+        private System.Windows.Forms.DataGridView chooseTestDataGridView;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graphicsChart;
+        private System.Windows.Forms.ComboBox chooseGraphicComboBox;
+        private System.Windows.Forms.Button executeGraphicButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxForceNDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxStrainDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn youngModulusEstGPaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn materialIdDataGridViewTextBoxColumn;
     }
 }
 
