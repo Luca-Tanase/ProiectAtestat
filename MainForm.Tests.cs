@@ -6,6 +6,14 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
+        private void SetupTestsTab()
+        {
+
+        }
+        private void LoadTestsTab()
+        {
+            testsTableAdapter.Fill(testDatabaseDataSet.tests);
+        }
         private void testInsertButton_Click(object sender, EventArgs e)
         {
             testsTableAdapter.TestInsert(

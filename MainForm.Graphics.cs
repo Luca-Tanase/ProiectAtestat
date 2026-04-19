@@ -6,7 +6,7 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
-        private void LoadGraphicsTab()
+        private void SetupGraphicsTab()
         {
             chooseTestDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             chooseTestDataGridView.MultiSelect = false;
@@ -24,6 +24,10 @@ namespace ProiectAtestat
             graphicsChart.Series.Clear();
             graphicsChart.ChartAreas[0].AxisX.Title = "";
             graphicsChart.ChartAreas[0].AxisY.Title = "";
+        }
+        private void LoadGraphicsTab()
+        {
+            
         }
 
         private void DrawGraph(int testId, string graphType)

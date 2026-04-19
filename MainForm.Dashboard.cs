@@ -5,19 +5,19 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
-        private void LoadDashboard()
+        private void SetupDashboard()
         {
-            lastTestDataGridView.ReadOnly = true;
-            lastTestDataGridView.AllowUserToAddRows = false;
-            lastTestDataGridView.AllowUserToDeleteRows = false;
-            lastTestDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            PopulateTableComboBox(fileImportComboBox);
+            SetupOutputDataGridView(lastTestDataGridView);
 
             materialsTableAdapter.GetLatestTests(testDatabaseDataSet.materials);
             DataTable table = testDatabaseDataSet.materials;
 
             lastTestDataGridView.DataSource = table;
-
-            PopulateTableComboBox(fileImportComboBox);
+        }
+        private void LoadDashboard()
+        {
+            materialsTableAdapter.GetLatestTests(testDatabaseDataSet.materials);
         }
     }
 }

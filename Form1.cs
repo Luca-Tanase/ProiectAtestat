@@ -5,6 +5,7 @@ using System.Linq;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Dynamic;
 
 namespace ProiectAtestat
 {
@@ -25,28 +26,18 @@ namespace ProiectAtestat
             this.testResultsTableAdapter.Fill(this.testDatabaseDataSet.testResults);
             this.materialsTableAdapter.Fill(this.testDatabaseDataSet.materials);
 
-            materialsOutputDataGridView.DataSource = testDatabaseDataSet.materials;
-            materialsOutputDataGridView.ReadOnly = true;
-            materialsOutputDataGridView.AllowUserToAddRows = false;
-            materialsOutputDataGridView.AllowUserToDeleteRows = false;
-            materialsOutputDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            materialsComboBindingSource.DataSource = testDatabaseDataSet.materials;
-
-            targetMaterialComboBox.DataSource = materialsComboBindingSource;
-            targetMaterialComboBox.DisplayMember = "name";
-            targetMaterialComboBox.ValueMember = "id";
-
-            PopulateTableComboBox(tableExportComboBox);
-
             testDatabaseDataSet.EnforceConstraints = false;
 
             GenerateTestData();
 
             SetEnterLeaveTextBoxes();
 
-            LoadDashboard();
-            LoadGraphicsTab();
+            SetupDashboard();
+            SetupMaterialsTab();
+            SetupTestsTab();
+            SetupTestResultsTab();
+            SetupGraphicsTab();
+            SetupExportTab();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,11 +45,15 @@ namespace ProiectAtestat
             if (tabControl.SelectedTab == dashboardPage)
                 LoadDashboard();
             else if (tabControl.SelectedTab == materialPage)
-                materialsTableAdapter.Fill(testDatabaseDataSet.materials);
+                LoadMaterialsTab();
             else if (tabControl.SelectedTab == testPage)
-                testsTableAdapter.Fill(testDatabaseDataSet.tests);
+                LoadTestsTab();
             else if (tabControl.SelectedTab == testResultPage)
-                testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
+                LoadTestResultsTab();
+            else if (tabControl.SelectedTab == graphPage)
+                LoadGraphicsTab();
+            else if (tabControl.SelectedTab == exportPage)
+                LoadExportTab();
         }
 
         private void materialsBindingNavigatorSaveItem_Click(object sender, EventArgs e)

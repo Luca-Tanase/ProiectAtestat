@@ -7,6 +7,13 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
+        private void SetupOutputDataGridView(DataGridView dgv)
+        {
+            dgv.ReadOnly = true;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
         private void PopulateTableComboBox(ComboBox combo)
         {
             combo.Items.Clear();

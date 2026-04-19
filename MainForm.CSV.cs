@@ -9,6 +9,15 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
+        private void SetupExportTab()
+        {
+            PopulateTableComboBox(tableExportComboBox);
+        }
+        private void LoadExportTab()
+        {
+
+        }
+
         private string[] GetHeadersForTable(string tableName)
         {
             switch (tableName)

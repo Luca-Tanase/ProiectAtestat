@@ -5,6 +5,15 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
+        private void SetupTestResultsTab()
+        {
+
+        }
+
+        private void LoadTestResultsTab()
+        {
+            testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
+        }
         private void testResultInsertButton_Click(object sender, EventArgs e)
         {
             testResultsTableAdapter.TestResultInsert(

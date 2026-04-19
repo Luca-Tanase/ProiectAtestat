@@ -6,6 +6,21 @@ namespace ProiectAtestat
 {
     public partial class mainForm : Form
     {
+        private void SetupMaterialsTab()
+        {
+            materialsOutputDataGridView.DataSource = testDatabaseDataSet.materials;
+            SetupOutputDataGridView(materialsOutputDataGridView);
+
+            materialsComboBindingSource.DataSource = testDatabaseDataSet.materials;
+
+            targetMaterialComboBox.DataSource = materialsComboBindingSource;
+            targetMaterialComboBox.DisplayMember = "name";
+            targetMaterialComboBox.ValueMember = "id";
+        }
+        private void LoadMaterialsTab()
+        {
+            materialsTableAdapter.Fill(testDatabaseDataSet.materials);
+        }
         private void materialInsertButton_Click(object sender, EventArgs e)
         {
             materialsTableAdapter.MaterialInsert(
