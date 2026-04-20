@@ -29,21 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.dashboardPage = new System.Windows.Forms.TabPage();
+            this.testNumLabel = new System.Windows.Forms.Label();
+            this.materialNumLabel = new System.Windows.Forms.Label();
             this.fileModelDownload = new System.Windows.Forms.Button();
             this.fileImportButton = new System.Windows.Forms.Button();
             this.fileImportComboBox = new System.Windows.Forms.ComboBox();
             this.fileImportLabel = new System.Windows.Forms.Label();
             this.lastTestLabel = new System.Windows.Forms.Label();
             this.lastTestDataGridView = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testMaxForce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testMaxStrain = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.testDatabaseDataSet = new ProiectAtestat.TestDatabaseDataSet();
             this.materialPage = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.maxForceTestsButton = new System.Windows.Forms.Button();
+            this.testReassignButton = new System.Windows.Forms.Button();
+            this.avgMaxForceButton = new System.Windows.Forms.Button();
+            this.findForceVariationButton = new System.Windows.Forms.Button();
             this.forceVariationPanel = new System.Windows.Forms.Panel();
             this.showVariationResultButton = new System.Windows.Forms.Button();
             this.minTestNumTextBox = new System.Windows.Forms.TextBox();
@@ -68,12 +78,14 @@
             this.cancelReassignButton = new System.Windows.Forms.Button();
             this.confirmReassignButton = new System.Windows.Forms.Button();
             this.materialsOutputDataGridView = new System.Windows.Forms.DataGridView();
-            this.findForceVariationButton = new System.Windows.Forms.Button();
-            this.maxForceTestsButton = new System.Windows.Forms.Button();
-            this.avgMaxForceButton = new System.Windows.Forms.Button();
             this.materialDeleteButton = new System.Windows.Forms.Button();
-            this.testReassignButton = new System.Windows.Forms.Button();
             this.materialsInputDataGridView = new System.Windows.Forms.DataGridView();
+            this.materialsInputId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputDensity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputYoungModulus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialsInputNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialNotesTextBox = new System.Windows.Forms.TextBox();
             this.materialInsertButton = new System.Windows.Forms.Button();
             this.materialYoungModulusTextBox = new System.Windows.Forms.TextBox();
@@ -84,6 +96,15 @@
             this.testPage = new System.Windows.Forms.TabPage();
             this.testStatisticsUpdateButton = new System.Windows.Forms.Button();
             this.testsDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testInsertButton = new System.Windows.Forms.Button();
             this.testMaterialIdTextBox = new System.Windows.Forms.TextBox();
             this.testNotesTextBox = new System.Windows.Forms.TextBox();
@@ -93,6 +114,13 @@
             this.hasNotesButton = new System.Windows.Forms.Button();
             this.defaultNotesButton = new System.Windows.Forms.Button();
             this.testResultsDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testResultTestIdTextBox = new System.Windows.Forms.TextBox();
             this.testResultInsertButton = new System.Windows.Forms.Button();
             this.testResultNotesTextBox = new System.Windows.Forms.TextBox();
@@ -104,35 +132,18 @@
             this.executeGraphicButton = new System.Windows.Forms.Button();
             this.chooseGraphicComboBox = new System.Windows.Forms.ComboBox();
             this.chooseTestDataGridView = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxForceNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxStrainDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.youngModulusEstGPaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.materialIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.graphicsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.exportPage = new System.Windows.Forms.TabPage();
             this.tableExportComboBox = new System.Windows.Forms.ComboBox();
             this.exportTableButton = new System.Windows.Forms.Button();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.testDatabaseDataSet = new ProiectAtestat.TestDatabaseDataSet();
-            this.materialsInputId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputDensity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputYoungModulus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialsInputNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testResultsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialsForceFilteredBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.materialsTableAdapter();
             this.tableAdapterManager = new ProiectAtestat.TestDatabaseDataSetTableAdapters.TableAdapterManager();
@@ -143,18 +154,13 @@
             this.materialsMaxForceTestsTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.materialsMaxForceTestsTableAdapter();
             this.materialsForceVariationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.materialsForceVariationTableAdapter = new ProiectAtestat.TestDatabaseDataSetTableAdapters.materialsForceVariationTableAdapter();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxForceNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxStrainDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.youngModulusEstGPaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.materialIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.dashboardPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lastTestDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).BeginInit();
             this.materialPage.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.forceVariationPanel.SuspendLayout();
             this.maxForceTestsPanel.SuspendLayout();
             this.averageForcePanel.SuspendLayout();
@@ -163,16 +169,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.materialsInputDataGridView)).BeginInit();
             this.testPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).BeginInit();
             this.testResultPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testResultsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).BeginInit();
             this.graphPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chooseTestDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graphicsChart)).BeginInit();
             this.exportPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsForceFilteredBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsMaxForceTestsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsForceVariationBindingSource)).BeginInit();
@@ -191,13 +195,15 @@
             this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1110, 909);
+            this.tabControl.Size = new System.Drawing.Size(1116, 869);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // dashboardPage
             // 
             this.dashboardPage.AutoScroll = true;
+            this.dashboardPage.Controls.Add(this.testNumLabel);
+            this.dashboardPage.Controls.Add(this.materialNumLabel);
             this.dashboardPage.Controls.Add(this.fileModelDownload);
             this.dashboardPage.Controls.Add(this.fileImportButton);
             this.dashboardPage.Controls.Add(this.fileImportComboBox);
@@ -212,6 +218,24 @@
             this.dashboardPage.TabIndex = 0;
             this.dashboardPage.Text = "Dashboard";
             this.dashboardPage.UseVisualStyleBackColor = true;
+            // 
+            // testNumLabel
+            // 
+            this.testNumLabel.AutoSize = true;
+            this.testNumLabel.Location = new System.Drawing.Point(8, 43);
+            this.testNumLabel.Name = "testNumLabel";
+            this.testNumLabel.Size = new System.Drawing.Size(101, 16);
+            this.testNumLabel.TabIndex = 7;
+            this.testNumLabel.Text = "Număr de teste:";
+            // 
+            // materialNumLabel
+            // 
+            this.materialNumLabel.AutoSize = true;
+            this.materialNumLabel.Location = new System.Drawing.Point(8, 13);
+            this.materialNumLabel.Name = "materialNumLabel";
+            this.materialNumLabel.Size = new System.Drawing.Size(128, 16);
+            this.materialNumLabel.TabIndex = 6;
+            this.materialNumLabel.Text = "Număr de materiale:";
             // 
             // fileModelDownload
             // 
@@ -253,7 +277,7 @@
             // lastTestLabel
             // 
             this.lastTestLabel.AutoSize = true;
-            this.lastTestLabel.Location = new System.Drawing.Point(8, 141);
+            this.lastTestLabel.Location = new System.Drawing.Point(8, 93);
             this.lastTestLabel.Name = "lastTestLabel";
             this.lastTestLabel.Size = new System.Drawing.Size(185, 16);
             this.lastTestLabel.TabIndex = 1;
@@ -269,12 +293,20 @@
             this.testMaxForce,
             this.testMaxStrain});
             this.lastTestDataGridView.DataSource = this.materialsBindingSource;
-            this.lastTestDataGridView.Location = new System.Drawing.Point(11, 179);
+            this.lastTestDataGridView.Location = new System.Drawing.Point(11, 118);
             this.lastTestDataGridView.Name = "lastTestDataGridView";
             this.lastTestDataGridView.RowHeadersWidth = 51;
             this.lastTestDataGridView.RowTemplate.Height = 24;
             this.lastTestDataGridView.Size = new System.Drawing.Size(552, 142);
             this.lastTestDataGridView.TabIndex = 0;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 125;
             // 
             // testDate
             // 
@@ -300,19 +332,26 @@
             this.testMaxStrain.Name = "testMaxStrain";
             this.testMaxStrain.Width = 125;
             // 
+            // materialsBindingSource
+            // 
+            this.materialsBindingSource.DataMember = "materials";
+            this.materialsBindingSource.DataSource = this.testDatabaseDataSet;
+            // 
+            // testDatabaseDataSet
+            // 
+            this.testDatabaseDataSet.DataSetName = "TestDatabaseDataSet";
+            this.testDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // materialPage
             // 
             this.materialPage.AutoScroll = true;
+            this.materialPage.Controls.Add(this.flowLayoutPanel1);
             this.materialPage.Controls.Add(this.forceVariationPanel);
             this.materialPage.Controls.Add(this.maxForceTestsPanel);
             this.materialPage.Controls.Add(this.averageForcePanel);
             this.materialPage.Controls.Add(this.reassignPanel);
             this.materialPage.Controls.Add(this.materialsOutputDataGridView);
-            this.materialPage.Controls.Add(this.findForceVariationButton);
-            this.materialPage.Controls.Add(this.maxForceTestsButton);
-            this.materialPage.Controls.Add(this.avgMaxForceButton);
             this.materialPage.Controls.Add(this.materialDeleteButton);
-            this.materialPage.Controls.Add(this.testReassignButton);
             this.materialPage.Controls.Add(this.materialsInputDataGridView);
             this.materialPage.Controls.Add(this.materialNotesTextBox);
             this.materialPage.Controls.Add(this.materialInsertButton);
@@ -325,10 +364,61 @@
             this.materialPage.Margin = new System.Windows.Forms.Padding(4);
             this.materialPage.Name = "materialPage";
             this.materialPage.Padding = new System.Windows.Forms.Padding(4);
-            this.materialPage.Size = new System.Drawing.Size(1102, 880);
+            this.materialPage.Size = new System.Drawing.Size(1108, 840);
             this.materialPage.TabIndex = 1;
             this.materialPage.Text = "Materiale";
             this.materialPage.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.maxForceTestsButton);
+            this.flowLayoutPanel1.Controls.Add(this.testReassignButton);
+            this.flowLayoutPanel1.Controls.Add(this.avgMaxForceButton);
+            this.flowLayoutPanel1.Controls.Add(this.findForceVariationButton);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 444);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(645, 50);
+            this.flowLayoutPanel1.TabIndex = 27;
+            // 
+            // maxForceTestsButton
+            // 
+            this.maxForceTestsButton.Location = new System.Drawing.Point(3, 3);
+            this.maxForceTestsButton.Name = "maxForceTestsButton";
+            this.maxForceTestsButton.Size = new System.Drawing.Size(126, 45);
+            this.maxForceTestsButton.TabIndex = 11;
+            this.maxForceTestsButton.Text = "Afișare teste cu forță maximă";
+            this.maxForceTestsButton.UseVisualStyleBackColor = true;
+            this.maxForceTestsButton.Click += new System.EventHandler(this.maxForceTestsButton_Click);
+            // 
+            // testReassignButton
+            // 
+            this.testReassignButton.Location = new System.Drawing.Point(135, 3);
+            this.testReassignButton.Name = "testReassignButton";
+            this.testReassignButton.Size = new System.Drawing.Size(126, 32);
+            this.testReassignButton.TabIndex = 8;
+            this.testReassignButton.Text = "Reatribuie teste";
+            this.testReassignButton.UseVisualStyleBackColor = true;
+            this.testReassignButton.Click += new System.EventHandler(this.testReassignButton_Click);
+            // 
+            // avgMaxForceButton
+            // 
+            this.avgMaxForceButton.Location = new System.Drawing.Point(267, 3);
+            this.avgMaxForceButton.Name = "avgMaxForceButton";
+            this.avgMaxForceButton.Size = new System.Drawing.Size(126, 45);
+            this.avgMaxForceButton.TabIndex = 10;
+            this.avgMaxForceButton.Text = "Calculează forța maximă medie";
+            this.avgMaxForceButton.UseVisualStyleBackColor = true;
+            this.avgMaxForceButton.Click += new System.EventHandler(this.avgMaxForceButton_Click);
+            // 
+            // findForceVariationButton
+            // 
+            this.findForceVariationButton.Location = new System.Drawing.Point(399, 3);
+            this.findForceVariationButton.Name = "findForceVariationButton";
+            this.findForceVariationButton.Size = new System.Drawing.Size(215, 45);
+            this.findForceVariationButton.TabIndex = 12;
+            this.findForceVariationButton.Text = "Găsește materiale cu variație mare a forței maxime aplicate";
+            this.findForceVariationButton.UseVisualStyleBackColor = true;
+            this.findForceVariationButton.Click += new System.EventHandler(this.findForceVariationButton_Click);
             // 
             // forceVariationPanel
             // 
@@ -558,55 +648,15 @@
             this.materialsOutputDataGridView.Size = new System.Drawing.Size(802, 333);
             this.materialsOutputDataGridView.TabIndex = 13;
             // 
-            // findForceVariationButton
-            // 
-            this.findForceVariationButton.Location = new System.Drawing.Point(824, 424);
-            this.findForceVariationButton.Name = "findForceVariationButton";
-            this.findForceVariationButton.Size = new System.Drawing.Size(215, 45);
-            this.findForceVariationButton.TabIndex = 12;
-            this.findForceVariationButton.Text = "Găsește materiale cu variație mare a forței maxime aplicate";
-            this.findForceVariationButton.UseVisualStyleBackColor = true;
-            this.findForceVariationButton.Click += new System.EventHandler(this.findForceVariationButton_Click);
-            // 
-            // maxForceTestsButton
-            // 
-            this.maxForceTestsButton.Location = new System.Drawing.Point(872, 355);
-            this.maxForceTestsButton.Name = "maxForceTestsButton";
-            this.maxForceTestsButton.Size = new System.Drawing.Size(126, 45);
-            this.maxForceTestsButton.TabIndex = 11;
-            this.maxForceTestsButton.Text = "Afișare teste cu forță maximă";
-            this.maxForceTestsButton.UseVisualStyleBackColor = true;
-            this.maxForceTestsButton.Click += new System.EventHandler(this.maxForceTestsButton_Click);
-            // 
-            // avgMaxForceButton
-            // 
-            this.avgMaxForceButton.Location = new System.Drawing.Point(872, 280);
-            this.avgMaxForceButton.Name = "avgMaxForceButton";
-            this.avgMaxForceButton.Size = new System.Drawing.Size(126, 45);
-            this.avgMaxForceButton.TabIndex = 10;
-            this.avgMaxForceButton.Text = "Calculează forța maximă medie";
-            this.avgMaxForceButton.UseVisualStyleBackColor = true;
-            this.avgMaxForceButton.Click += new System.EventHandler(this.avgMaxForceButton_Click);
-            // 
             // materialDeleteButton
             // 
-            this.materialDeleteButton.Location = new System.Drawing.Point(872, 138);
+            this.materialDeleteButton.Location = new System.Drawing.Point(913, 59);
             this.materialDeleteButton.Name = "materialDeleteButton";
             this.materialDeleteButton.Size = new System.Drawing.Size(126, 32);
             this.materialDeleteButton.TabIndex = 9;
             this.materialDeleteButton.Text = "Șterge";
             this.materialDeleteButton.UseVisualStyleBackColor = true;
             this.materialDeleteButton.Click += new System.EventHandler(this.materialDeleteButton_Click);
-            // 
-            // testReassignButton
-            // 
-            this.testReassignButton.Location = new System.Drawing.Point(872, 211);
-            this.testReassignButton.Name = "testReassignButton";
-            this.testReassignButton.Size = new System.Drawing.Size(126, 32);
-            this.testReassignButton.TabIndex = 8;
-            this.testReassignButton.Text = "Reatribuie teste";
-            this.testReassignButton.UseVisualStyleBackColor = true;
-            this.testReassignButton.Click += new System.EventHandler(this.testReassignButton_Click);
             // 
             // materialsInputDataGridView
             // 
@@ -624,9 +674,57 @@
             this.materialsInputDataGridView.Name = "materialsInputDataGridView";
             this.materialsInputDataGridView.RowHeadersWidth = 51;
             this.materialsInputDataGridView.RowTemplate.Height = 24;
-            this.materialsInputDataGridView.Size = new System.Drawing.Size(802, 333);
+            this.materialsInputDataGridView.Size = new System.Drawing.Size(1068, 300);
             this.materialsInputDataGridView.TabIndex = 7;
             this.materialsInputDataGridView.SelectionChanged += new System.EventHandler(this.materialsInputDataGridView_SelectionChanged);
+            // 
+            // materialsInputId
+            // 
+            this.materialsInputId.DataPropertyName = "id";
+            this.materialsInputId.HeaderText = "id";
+            this.materialsInputId.MinimumWidth = 6;
+            this.materialsInputId.Name = "materialsInputId";
+            this.materialsInputId.Width = 125;
+            // 
+            // materialsInputName
+            // 
+            this.materialsInputName.DataPropertyName = "name";
+            this.materialsInputName.HeaderText = "name";
+            this.materialsInputName.MinimumWidth = 6;
+            this.materialsInputName.Name = "materialsInputName";
+            this.materialsInputName.Width = 125;
+            // 
+            // materialsInputType
+            // 
+            this.materialsInputType.DataPropertyName = "type";
+            this.materialsInputType.HeaderText = "type";
+            this.materialsInputType.MinimumWidth = 6;
+            this.materialsInputType.Name = "materialsInputType";
+            this.materialsInputType.Width = 125;
+            // 
+            // materialsInputDensity
+            // 
+            this.materialsInputDensity.DataPropertyName = "density_kg_m3";
+            this.materialsInputDensity.HeaderText = "density_kg_m3";
+            this.materialsInputDensity.MinimumWidth = 6;
+            this.materialsInputDensity.Name = "materialsInputDensity";
+            this.materialsInputDensity.Width = 125;
+            // 
+            // materialsInputYoungModulus
+            // 
+            this.materialsInputYoungModulus.DataPropertyName = "YoungModulus_GPa";
+            this.materialsInputYoungModulus.HeaderText = "YoungModulus_GPa";
+            this.materialsInputYoungModulus.MinimumWidth = 6;
+            this.materialsInputYoungModulus.Name = "materialsInputYoungModulus";
+            this.materialsInputYoungModulus.Width = 125;
+            // 
+            // materialsInputNotes
+            // 
+            this.materialsInputNotes.DataPropertyName = "notes";
+            this.materialsInputNotes.HeaderText = "notes";
+            this.materialsInputNotes.MinimumWidth = 6;
+            this.materialsInputNotes.Name = "materialsInputNotes";
+            this.materialsInputNotes.Width = 125;
             // 
             // materialNotesTextBox
             // 
@@ -639,7 +737,7 @@
             // 
             // materialInsertButton
             // 
-            this.materialInsertButton.Location = new System.Drawing.Point(760, 59);
+            this.materialInsertButton.Location = new System.Drawing.Point(712, 59);
             this.materialInsertButton.Name = "materialInsertButton";
             this.materialInsertButton.Size = new System.Drawing.Size(116, 32);
             this.materialInsertButton.TabIndex = 5;
@@ -741,6 +839,75 @@
             this.testsDataGridView.Size = new System.Drawing.Size(1040, 220);
             this.testsDataGridView.TabIndex = 12;
             // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn7.HeaderText = "id";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "type";
+            this.dataGridViewTextBoxColumn8.HeaderText = "type";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "date";
+            this.dataGridViewTextBoxColumn9.HeaderText = "date";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "maxForce_N";
+            this.dataGridViewTextBoxColumn10.HeaderText = "maxForce_N";
+            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "maxStrain";
+            this.dataGridViewTextBoxColumn11.HeaderText = "maxStrain";
+            this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "YoungModulusEst_GPa";
+            this.dataGridViewTextBoxColumn12.HeaderText = "YoungModulusEst_GPa";
+            this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "notes";
+            this.dataGridViewTextBoxColumn13.HeaderText = "notes";
+            this.dataGridViewTextBoxColumn13.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "materialId";
+            this.dataGridViewTextBoxColumn14.HeaderText = "materialId";
+            this.dataGridViewTextBoxColumn14.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.Width = 125;
+            // 
+            // testsBindingSource
+            // 
+            this.testsBindingSource.DataMember = "tests";
+            this.testsBindingSource.DataSource = this.testDatabaseDataSet;
+            // 
             // testInsertButton
             // 
             this.testInsertButton.Location = new System.Drawing.Point(478, 59);
@@ -803,7 +970,7 @@
             this.testResultPage.Margin = new System.Windows.Forms.Padding(4);
             this.testResultPage.Name = "testResultPage";
             this.testResultPage.Padding = new System.Windows.Forms.Padding(4);
-            this.testResultPage.Size = new System.Drawing.Size(1102, 880);
+            this.testResultPage.Size = new System.Drawing.Size(1108, 840);
             this.testResultPage.TabIndex = 3;
             this.testResultPage.Text = "Rezultate Teste ";
             this.testResultPage.UseVisualStyleBackColor = true;
@@ -812,7 +979,7 @@
             // 
             this.hasNotesButton.Location = new System.Drawing.Point(836, 223);
             this.hasNotesButton.Name = "hasNotesButton";
-            this.hasNotesButton.Size = new System.Drawing.Size(208, 33);
+            this.hasNotesButton.Size = new System.Drawing.Size(218, 33);
             this.hasNotesButton.TabIndex = 15;
             this.hasNotesButton.Text = "Rezultate cu notițe suplimentare";
             this.hasNotesButton.UseVisualStyleBackColor = true;
@@ -846,6 +1013,59 @@
             this.testResultsDataGridView.RowTemplate.Height = 24;
             this.testResultsDataGridView.Size = new System.Drawing.Size(800, 220);
             this.testResultsDataGridView.TabIndex = 13;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "time_s";
+            this.dataGridViewTextBoxColumn2.HeaderText = "time_s";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "force_N";
+            this.dataGridViewTextBoxColumn3.HeaderText = "force_N";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "strain";
+            this.dataGridViewTextBoxColumn4.HeaderText = "strain";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "notes";
+            this.dataGridViewTextBoxColumn5.HeaderText = "notes";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "testId";
+            this.dataGridViewTextBoxColumn6.HeaderText = "testId";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // testResultsBindingSource
+            // 
+            this.testResultsBindingSource.DataMember = "testResults";
+            this.testResultsBindingSource.DataSource = this.testDatabaseDataSet;
             // 
             // testResultTestIdTextBox
             // 
@@ -965,288 +1185,6 @@
             this.chooseTestDataGridView.Size = new System.Drawing.Size(1051, 353);
             this.chooseTestDataGridView.TabIndex = 1;
             // 
-            // graphicsChart
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.graphicsChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.graphicsChart.Legends.Add(legend1);
-            this.graphicsChart.Location = new System.Drawing.Point(7, 7);
-            this.graphicsChart.Name = "graphicsChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.graphicsChart.Series.Add(series1);
-            this.graphicsChart.Size = new System.Drawing.Size(887, 387);
-            this.graphicsChart.TabIndex = 0;
-            this.graphicsChart.Text = "chart1";
-            // 
-            // exportPage
-            // 
-            this.exportPage.Controls.Add(this.tableExportComboBox);
-            this.exportPage.Controls.Add(this.exportTableButton);
-            this.exportPage.Location = new System.Drawing.Point(4, 25);
-            this.exportPage.Margin = new System.Windows.Forms.Padding(4);
-            this.exportPage.Name = "exportPage";
-            this.exportPage.Padding = new System.Windows.Forms.Padding(4);
-            this.exportPage.Size = new System.Drawing.Size(1102, 880);
-            this.exportPage.TabIndex = 5;
-            this.exportPage.Text = "Export";
-            this.exportPage.UseVisualStyleBackColor = true;
-            // 
-            // tableExportComboBox
-            // 
-            this.tableExportComboBox.FormattingEnabled = true;
-            this.tableExportComboBox.Location = new System.Drawing.Point(8, 39);
-            this.tableExportComboBox.Name = "tableExportComboBox";
-            this.tableExportComboBox.Size = new System.Drawing.Size(153, 24);
-            this.tableExportComboBox.TabIndex = 1;
-            // 
-            // exportTableButton
-            // 
-            this.exportTableButton.Location = new System.Drawing.Point(261, 30);
-            this.exportTableButton.Name = "exportTableButton";
-            this.exportTableButton.Size = new System.Drawing.Size(117, 41);
-            this.exportTableButton.TabIndex = 0;
-            this.exportTableButton.Text = "Exportă";
-            this.exportTableButton.UseVisualStyleBackColor = true;
-            this.exportTableButton.Click += new System.EventHandler(this.exportTableButton_Click);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // materialsBindingSource
-            // 
-            this.materialsBindingSource.DataMember = "materials";
-            this.materialsBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
-            // testDatabaseDataSet
-            // 
-            this.testDatabaseDataSet.DataSetName = "TestDatabaseDataSet";
-            this.testDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // materialsInputId
-            // 
-            this.materialsInputId.DataPropertyName = "id";
-            this.materialsInputId.HeaderText = "id";
-            this.materialsInputId.MinimumWidth = 6;
-            this.materialsInputId.Name = "materialsInputId";
-            this.materialsInputId.Width = 125;
-            // 
-            // materialsInputName
-            // 
-            this.materialsInputName.DataPropertyName = "name";
-            this.materialsInputName.HeaderText = "name";
-            this.materialsInputName.MinimumWidth = 6;
-            this.materialsInputName.Name = "materialsInputName";
-            this.materialsInputName.Width = 125;
-            // 
-            // materialsInputType
-            // 
-            this.materialsInputType.DataPropertyName = "type";
-            this.materialsInputType.HeaderText = "type";
-            this.materialsInputType.MinimumWidth = 6;
-            this.materialsInputType.Name = "materialsInputType";
-            this.materialsInputType.Width = 125;
-            // 
-            // materialsInputDensity
-            // 
-            this.materialsInputDensity.DataPropertyName = "density_kg_m3";
-            this.materialsInputDensity.HeaderText = "density_kg_m3";
-            this.materialsInputDensity.MinimumWidth = 6;
-            this.materialsInputDensity.Name = "materialsInputDensity";
-            this.materialsInputDensity.Width = 125;
-            // 
-            // materialsInputYoungModulus
-            // 
-            this.materialsInputYoungModulus.DataPropertyName = "YoungModulus_GPa";
-            this.materialsInputYoungModulus.HeaderText = "YoungModulus_GPa";
-            this.materialsInputYoungModulus.MinimumWidth = 6;
-            this.materialsInputYoungModulus.Name = "materialsInputYoungModulus";
-            this.materialsInputYoungModulus.Width = 125;
-            // 
-            // materialsInputNotes
-            // 
-            this.materialsInputNotes.DataPropertyName = "notes";
-            this.materialsInputNotes.HeaderText = "notes";
-            this.materialsInputNotes.MinimumWidth = 6;
-            this.materialsInputNotes.Name = "materialsInputNotes";
-            this.materialsInputNotes.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn7.HeaderText = "id";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "type";
-            this.dataGridViewTextBoxColumn8.HeaderText = "type";
-            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "date";
-            this.dataGridViewTextBoxColumn9.HeaderText = "date";
-            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "maxForce_N";
-            this.dataGridViewTextBoxColumn10.HeaderText = "maxForce_N";
-            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "maxStrain";
-            this.dataGridViewTextBoxColumn11.HeaderText = "maxStrain";
-            this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "YoungModulusEst_GPa";
-            this.dataGridViewTextBoxColumn12.HeaderText = "YoungModulusEst_GPa";
-            this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "notes";
-            this.dataGridViewTextBoxColumn13.HeaderText = "notes";
-            this.dataGridViewTextBoxColumn13.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "materialId";
-            this.dataGridViewTextBoxColumn14.HeaderText = "materialId";
-            this.dataGridViewTextBoxColumn14.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.Width = 125;
-            // 
-            // testsBindingSource
-            // 
-            this.testsBindingSource.DataMember = "tests";
-            this.testsBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "id";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "time_s";
-            this.dataGridViewTextBoxColumn2.HeaderText = "time_s";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "force_N";
-            this.dataGridViewTextBoxColumn3.HeaderText = "force_N";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "strain";
-            this.dataGridViewTextBoxColumn4.HeaderText = "strain";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "notes";
-            this.dataGridViewTextBoxColumn5.HeaderText = "notes";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "testId";
-            this.dataGridViewTextBoxColumn6.HeaderText = "testId";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 125;
-            // 
-            // testResultsBindingSource
-            // 
-            this.testResultsBindingSource.DataMember = "testResults";
-            this.testResultsBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
-            // materialsForceFilteredBindingSource
-            // 
-            this.materialsForceFilteredBindingSource.DataMember = "materialsForceFiltered";
-            this.materialsForceFilteredBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
-            // materialsTableAdapter
-            // 
-            this.materialsTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.materialsTableAdapter = this.materialsTableAdapter;
-            this.tableAdapterManager.testResultsTableAdapter = this.testResultsTableAdapter;
-            this.tableAdapterManager.testsTableAdapter = this.testsTableAdapter;
-            this.tableAdapterManager.UpdateOrder = ProiectAtestat.TestDatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // testResultsTableAdapter
-            // 
-            this.testResultsTableAdapter.ClearBeforeFill = true;
-            // 
-            // testsTableAdapter
-            // 
-            this.testsTableAdapter.ClearBeforeFill = true;
-            // 
-            // materialsForceFilteredTableAdapter
-            // 
-            this.materialsForceFilteredTableAdapter.ClearBeforeFill = true;
-            // 
-            // materialsMaxForceTestsBindingSource
-            // 
-            this.materialsMaxForceTestsBindingSource.DataMember = "materialsMaxForceTests";
-            this.materialsMaxForceTestsBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
-            // materialsMaxForceTestsTableAdapter
-            // 
-            this.materialsMaxForceTestsTableAdapter.ClearBeforeFill = true;
-            // 
-            // materialsForceVariationBindingSource
-            // 
-            this.materialsForceVariationBindingSource.DataMember = "materialsForceVariation";
-            this.materialsForceVariationBindingSource.DataSource = this.testDatabaseDataSet;
-            // 
-            // materialsForceVariationTableAdapter
-            // 
-            this.materialsForceVariationTableAdapter.ClearBeforeFill = true;
-            // 
             // id
             // 
             this.id.DataPropertyName = "id";
@@ -1311,11 +1249,105 @@
             this.materialIdDataGridViewTextBoxColumn.Name = "materialIdDataGridViewTextBoxColumn";
             this.materialIdDataGridViewTextBoxColumn.Width = 125;
             // 
+            // graphicsChart
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.graphicsChart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.graphicsChart.Legends.Add(legend3);
+            this.graphicsChart.Location = new System.Drawing.Point(7, 7);
+            this.graphicsChart.Name = "graphicsChart";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.graphicsChart.Series.Add(series3);
+            this.graphicsChart.Size = new System.Drawing.Size(887, 387);
+            this.graphicsChart.TabIndex = 0;
+            this.graphicsChart.Text = "chart1";
+            // 
+            // exportPage
+            // 
+            this.exportPage.Controls.Add(this.tableExportComboBox);
+            this.exportPage.Controls.Add(this.exportTableButton);
+            this.exportPage.Location = new System.Drawing.Point(4, 25);
+            this.exportPage.Margin = new System.Windows.Forms.Padding(4);
+            this.exportPage.Name = "exportPage";
+            this.exportPage.Padding = new System.Windows.Forms.Padding(4);
+            this.exportPage.Size = new System.Drawing.Size(1102, 880);
+            this.exportPage.TabIndex = 5;
+            this.exportPage.Text = "Export";
+            this.exportPage.UseVisualStyleBackColor = true;
+            // 
+            // tableExportComboBox
+            // 
+            this.tableExportComboBox.FormattingEnabled = true;
+            this.tableExportComboBox.Location = new System.Drawing.Point(8, 39);
+            this.tableExportComboBox.Name = "tableExportComboBox";
+            this.tableExportComboBox.Size = new System.Drawing.Size(153, 24);
+            this.tableExportComboBox.TabIndex = 1;
+            // 
+            // exportTableButton
+            // 
+            this.exportTableButton.Location = new System.Drawing.Point(261, 30);
+            this.exportTableButton.Name = "exportTableButton";
+            this.exportTableButton.Size = new System.Drawing.Size(117, 41);
+            this.exportTableButton.TabIndex = 0;
+            this.exportTableButton.Text = "Exportă";
+            this.exportTableButton.UseVisualStyleBackColor = true;
+            this.exportTableButton.Click += new System.EventHandler(this.exportTableButton_Click);
+            // 
+            // materialsForceFilteredBindingSource
+            // 
+            this.materialsForceFilteredBindingSource.DataMember = "materialsForceFiltered";
+            this.materialsForceFilteredBindingSource.DataSource = this.testDatabaseDataSet;
+            // 
+            // materialsTableAdapter
+            // 
+            this.materialsTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.materialsTableAdapter = this.materialsTableAdapter;
+            this.tableAdapterManager.testResultsTableAdapter = this.testResultsTableAdapter;
+            this.tableAdapterManager.testsTableAdapter = this.testsTableAdapter;
+            this.tableAdapterManager.UpdateOrder = ProiectAtestat.TestDatabaseDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // testResultsTableAdapter
+            // 
+            this.testResultsTableAdapter.ClearBeforeFill = true;
+            // 
+            // testsTableAdapter
+            // 
+            this.testsTableAdapter.ClearBeforeFill = true;
+            // 
+            // materialsForceFilteredTableAdapter
+            // 
+            this.materialsForceFilteredTableAdapter.ClearBeforeFill = true;
+            // 
+            // materialsMaxForceTestsBindingSource
+            // 
+            this.materialsMaxForceTestsBindingSource.DataMember = "materialsMaxForceTests";
+            this.materialsMaxForceTestsBindingSource.DataSource = this.testDatabaseDataSet;
+            // 
+            // materialsMaxForceTestsTableAdapter
+            // 
+            this.materialsMaxForceTestsTableAdapter.ClearBeforeFill = true;
+            // 
+            // materialsForceVariationBindingSource
+            // 
+            this.materialsForceVariationBindingSource.DataMember = "materialsForceVariation";
+            this.materialsForceVariationBindingSource.DataSource = this.testDatabaseDataSet;
+            // 
+            // materialsForceVariationTableAdapter
+            // 
+            this.materialsForceVariationTableAdapter.ClearBeforeFill = true;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1110, 909);
+            this.ClientSize = new System.Drawing.Size(1116, 869);
             this.Controls.Add(this.tabControl);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "mainForm";
@@ -1325,8 +1357,11 @@
             this.dashboardPage.ResumeLayout(false);
             this.dashboardPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lastTestDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).EndInit();
             this.materialPage.ResumeLayout(false);
             this.materialPage.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.forceVariationPanel.ResumeLayout(false);
             this.forceVariationPanel.PerformLayout();
             this.maxForceTestsPanel.ResumeLayout(false);
@@ -1339,17 +1374,15 @@
             this.testPage.ResumeLayout(false);
             this.testPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).EndInit();
             this.testResultPage.ResumeLayout(false);
             this.testResultPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testResultsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).EndInit();
             this.graphPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chooseTestDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.graphicsChart)).EndInit();
             this.exportPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testResultsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsForceFilteredBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsMaxForceTestsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.materialsForceVariationBindingSource)).EndInit();
@@ -1478,6 +1511,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn youngModulusEstGPaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn materialIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label testNumLabel;
+        private System.Windows.Forms.Label materialNumLabel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
