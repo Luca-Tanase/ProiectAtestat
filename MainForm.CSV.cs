@@ -15,18 +15,9 @@ namespace ProiectAtestat
         }
         private void LoadExportTab()
         {
-
-        }
-
-        private string[] GetHeadersForTable(string tableName)
-        {
-            switch (tableName)
-            {
-                case "materials": return new[] { "name", "type", "density", "youngModulus", "notes" };
-                case "tests": return new[] { "type", "notes", "materialId" };
-                case "testResults": return new[] { "time_s", "force_N", "strain", "notes", "testId" };
-                default: return null;
-            }
+            testsTableAdapter.Fill(testDatabaseDataSet.tests);
+            testResultsTableAdapter.Fill(testDatabaseDataSet.testResults);
+            materialsTableAdapter.Fill(testDatabaseDataSet.materials);
         }
 
         private DataTable GetDataTableForExport(string tableName)
@@ -39,24 +30,36 @@ namespace ProiectAtestat
                 default: return null;
             }
         }
+        private List<DataColumn> GetExportableColumns(DataTable table, bool excludeId)
+        {
+            var columns = new List<DataColumn>();
+            foreach (DataColumn col in table.Columns)
+            {
+                if (excludeId && (col.ColumnName.Equals("id", StringComparison.OrdinalIgnoreCase) ||
+                                  col.ColumnName.EndsWith("Id", StringComparison.OrdinalIgnoreCase)))
+                    continue;
+                columns.Add(col);
+            }
+            return columns;
+        }
 
-        private void ExportDataTableToCSV(DataTable table, string filePath)
+        private void ExportDataTableToCSV(DataTable table, string filePath, List<DataColumn> columns)
         {
             using (StreamWriter writer = new StreamWriter(filePath))
             {
-                for (int i = 0; i < table.Columns.Count; i++)
+                for (int i = 0; i < columns.Count; i++)
                 {
-                    writer.Write(table.Columns[i].ColumnName);
-                    if (i < table.Columns.Count - 1) writer.Write(",");
+                    writer.Write(columns[i].ColumnName);
+                    if (i < columns.Count - 1) writer.Write(",");
                 }
                 writer.WriteLine();
 
                 foreach (DataRow row in table.Rows)
                 {
-                    for (int i = 0; i < table.Columns.Count; i++)
+                    for (int i = 0; i < columns.Count; i++)
                     {
-                        if (row[i] != DBNull.Value) writer.Write(row[i].ToString());
-                        if (i < table.Columns.Count - 1) writer.Write(",");
+                        if (row[columns[i]] != DBNull.Value) writer.Write(row[columns[i]].ToString());
+                        if (i < columns.Count - 1) writer.Write(",");
                     }
                     writer.WriteLine();
                 }
@@ -97,9 +100,12 @@ namespace ProiectAtestat
             }
 
             string tableName = ((KeyValuePair<string, string>)fileImportComboBox.SelectedItem).Value;
-            string[] expectedHeaders = GetHeadersForTable(tableName);
+            DataTable table = GetDataTableForExport(tableName);
+            if (table == null) { MessageBox.Show("Tabel necunoscut."); return; }
 
-            if (expectedHeaders == null) { MessageBox.Show("Tabel necunoscut."); return; }
+            // Use the same logic as export: exclude ID columns
+            var columns = GetExportableColumns(table, true);
+            string[] expectedHeaders = columns.Select(c => c.ColumnName).ToArray();
 
             OpenFileDialog ofd = new OpenFileDialog { Filter = "Fișiere CSV|*.csv" };
             if (ofd.ShowDialog() != DialogResult.OK) return;
@@ -168,9 +174,11 @@ namespace ProiectAtestat
             if (fileImportComboBox.SelectedItem == null) { MessageBox.Show("Selectați tabelul."); return; }
 
             string tableName = ((KeyValuePair<string, string>)fileImportComboBox.SelectedItem).Value;
-            string[] headers = GetHeadersForTable(tableName);
+            DataTable table = GetDataTableForExport(tableName);
+            if (table == null) { MessageBox.Show("Tabel necunoscut."); return; }
 
-            if (headers == null) { MessageBox.Show("Tabel necunoscut."); return; }
+            var columns = GetExportableColumns(table, true);
+            string[] headers = columns.Select(c => c.ColumnName).ToArray();
 
             SaveFileDialog sfd = new SaveFileDialog
             {
@@ -210,7 +218,9 @@ namespace ProiectAtestat
 
             try
             {
-                ExportDataTableToCSV(tableToExport, sfd.FileName);
+                bool excludeId = exportWithoutIdCheckBox.Checked;
+                var columns = GetExportableColumns(tableToExport, excludeId);
+                ExportDataTableToCSV(tableToExport, sfd.FileName, columns);
                 MessageBox.Show("Export realizat cu succes.");
             }
             catch (Exception ex)

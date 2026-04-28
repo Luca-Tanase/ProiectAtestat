@@ -84,19 +84,6 @@ SELECT id, name, type, density_kg_m3, YoungModulus_GPa, notes FROM materials WHE
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="GetLatestTests" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy3" GeneratorSourceName="GetLatestTests" GetMethodModifier="Public" GetMethodName="GetDataBy3" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="GetLatestTests">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT materials.name, tests.date, tests.maxForce_N, tests.maxStrain
-FROM     materials LEFT OUTER JOIN
-                  tests ON materials.id = tests.materialId AND tests.date =
-                      (SELECT MAX(date) AS Expr1
-                       FROM      tests
-                       WHERE   (materialId = materials.id))</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
               <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="MaterialDelete" Modifier="Public" Name="MaterialDelete" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="MaterialDelete">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -124,7 +111,7 @@ VALUES (@name,@type,@density_kg_m3,@YoungModulus_GPa,@notes); </CommandText>
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="MaterialNumber" Modifier="Public" Name="MaterialNumber" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="MaterialNumber">
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="MaterialNumber" Modifier="Public" Name="MaterialNumber" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="MaterialNumber">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) AS materialNum
@@ -133,7 +120,7 @@ FROM     materials</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestMaterialInsert" Modifier="Public" Name="TestMaterialInsert" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="TestMaterialInsert">
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestMaterialInsert" Modifier="Public" Name="TestMaterialInsert" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="TestMaterialInsert">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO materials
@@ -387,7 +374,7 @@ VALUES (@type, GETDATE(),@notes,@materialId); </CommandText>
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestNumber" Modifier="Public" Name="TestNumber" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="TestNumber">
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestNumber" Modifier="Public" Name="TestNumber" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="TestNumber">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) AS testNum
@@ -396,7 +383,7 @@ FROM     tests</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestStatisticsUpdate" Modifier="Public" Name="TestStatisticsUpdate" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="TestStatisticsUpdate">
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestStatisticsUpdate" Modifier="Public" Name="TestStatisticsUpdate" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="TestStatisticsUpdate">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE tests
@@ -420,7 +407,7 @@ WHERE  (id = @testId)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestTestInsert" Modifier="Public" Name="TestTestInsert" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="TestTestInsert">
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestTestInsert" Modifier="Public" Name="TestTestInsert" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="TestTestInsert">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO tests
@@ -514,6 +501,30 @@ HAVING (MAX(tests.maxForce_N) - MIN(tests.maxForce_N) &gt;= @minVariation) AND (
               <Mapping SourceColumn="minForce" DataSetColumn="minForce" />
               <Mapping SourceColumn="forceVariation" DataSetColumn="forceVariation" />
               <Mapping SourceColumn="testCount" DataSetColumn="testCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="materialsDashboardTableAdapter" GeneratorDataComponentClassName="materialsDashboardTableAdapter" Name="materialsDashboard" UserDataComponentName="materialsDashboardTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="GetLatestTests" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetLatestTestsTable" GeneratorSourceName="GetLatestTests" GetMethodModifier="Public" GetMethodName="GetLatestTestsTable" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetLatestTestsTable" UserSourceName="GetLatestTests">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT materials.name, tests.date, tests.maxForce_N, tests.maxStrain
+FROM     materials LEFT OUTER JOIN
+                  tests ON materials.id = tests.materialId AND tests.date =
+                      (SELECT MAX(date) AS Expr1
+                       FROM      tests
+                       WHERE   (materialId = materials.id))</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="date" DataSetColumn="date" />
+              <Mapping SourceColumn="maxForce_N" DataSetColumn="maxForce_N" />
+              <Mapping SourceColumn="maxStrain" DataSetColumn="maxStrain" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -656,6 +667,22 @@ HAVING (MAX(tests.maxForce_N) - MIN(tests.maxForce_N) &gt;= @minVariation) AND (
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="materialsDashboard" msprop:Generator_RowEvHandlerName="materialsDashboardRowChangeEventHandler" msprop:Generator_RowDeletedName="materialsDashboardRowDeleted" msprop:Generator_RowDeletingName="materialsDashboardRowDeleting" msprop:Generator_RowEvArgName="materialsDashboardRowChangeEvent" msprop:Generator_TablePropName="materialsDashboard" msprop:Generator_RowChangedName="materialsDashboardRowChanged" msprop:Generator_RowChangingName="materialsDashboardRowChanging" msprop:Generator_TableClassName="materialsDashboardDataTable" msprop:Generator_RowClassName="materialsDashboardRow" msprop:Generator_TableVarName="tablematerialsDashboard" msprop:Generator_UserTableName="materialsDashboard">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="date" msprop:Generator_ColumnPropNameInRow="date" msprop:Generator_ColumnPropNameInTable="dateColumn" msprop:Generator_ColumnVarNameInTable="columndate" msprop:Generator_UserColumnName="date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="maxForce_N" msprop:Generator_ColumnPropNameInRow="maxForce_N" msprop:Generator_ColumnPropNameInTable="maxForce_NColumn" msprop:Generator_ColumnVarNameInTable="columnmaxForce_N" msprop:Generator_UserColumnName="maxForce_N" type="xs:decimal" minOccurs="0" />
+              <xs:element name="maxStrain" msprop:Generator_ColumnPropNameInRow="maxStrain" msprop:Generator_ColumnPropNameInTable="maxStrainColumn" msprop:Generator_ColumnVarNameInTable="columnmaxStrain" msprop:Generator_UserColumnName="maxStrain" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -673,8 +700,8 @@ HAVING (MAX(tests.maxForce_N) - MIN(tests.maxForce_N) &gt;= @minVariation) AND (
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="tests_testResults" msdata:parent="tests" msdata:child="testResults" msdata:parentkey="id" msdata:childkey="testId" msprop:Generator_UserParentTable="tests" msprop:Generator_UserChildTable="testResults" msprop:Generator_RelationVarName="relationtests_testResults" msprop:Generator_ChildPropName="GettestResultsRows" msprop:Generator_UserRelationName="tests_testResults" msprop:Generator_ParentPropName="testsRow" />
-      <msdata:Relationship name="materials_tests" msdata:parent="materials" msdata:child="tests" msdata:parentkey="id" msdata:childkey="materialId" msprop:Generator_UserParentTable="materials" msprop:Generator_UserChildTable="tests" msprop:Generator_RelationVarName="relationmaterials_tests" msprop:Generator_ChildPropName="GettestsRows" msprop:Generator_ParentPropName="materialsRow" msprop:Generator_UserRelationName="materials_tests" />
+      <msdata:Relationship name="tests_testResults" msdata:parent="tests" msdata:child="testResults" msdata:parentkey="id" msdata:childkey="testId" msprop:Generator_UserParentTable="tests" msprop:Generator_UserChildTable="testResults" msprop:Generator_RelationVarName="relationtests_testResults" msprop:Generator_ChildPropName="GettestResultsRows" msprop:Generator_ParentPropName="testsRow" msprop:Generator_UserRelationName="tests_testResults" />
+      <msdata:Relationship name="materials_tests" msdata:parent="materials" msdata:child="tests" msdata:parentkey="id" msdata:childkey="materialId" msprop:Generator_UserParentTable="materials" msprop:Generator_UserChildTable="tests" msprop:Generator_RelationVarName="relationmaterials_tests" msprop:Generator_ChildPropName="GettestsRows" msprop:Generator_UserRelationName="materials_tests" msprop:Generator_ParentPropName="materialsRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

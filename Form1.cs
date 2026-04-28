@@ -21,6 +21,8 @@ namespace ProiectAtestat
 
         private void mainForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'testDatabaseDataSet.materialsDashboard' table. You can move, or remove it, as needed.
+            this.materialsDashboardTableAdapter.GetLatestTests(this.testDatabaseDataSet.materialsDashboard);
             this.materialsMaxForceTestsTableAdapter.GetMaxForceTests(this.testDatabaseDataSet.materialsMaxForceTests);
             this.testsTableAdapter.Fill(this.testDatabaseDataSet.tests);
             this.testResultsTableAdapter.Fill(this.testDatabaseDataSet.testResults);

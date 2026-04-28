@@ -10,14 +10,13 @@ namespace ProiectAtestat
             PopulateTableComboBox(fileImportComboBox);
             SetupOutputDataGridView(lastTestDataGridView);
 
-            materialsTableAdapter.GetLatestTests(testDatabaseDataSet.materials);
-            DataTable table = testDatabaseDataSet.materials;
-
+            DataTable table = materialsDashboardTableAdapter.GetLatestTestsTable();
             lastTestDataGridView.DataSource = table;
         }
         private void LoadDashboard()
         {
-            materialsTableAdapter.GetLatestTests(testDatabaseDataSet.materials);
+            DataTable table = materialsDashboardTableAdapter.GetLatestTestsTable();
+            lastTestDataGridView.DataSource = table;
 
             // Option 1: Use the count of rows in the dataset
             /// materialNumLabel.Text = testDatabaseDataSet.materials.Rows.Count.ToString();
