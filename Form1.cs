@@ -33,6 +33,7 @@ namespace ProiectAtestat
             SetEnterLeaveTextBoxes();
 
             SetupDashboard();
+            LoadDashboard();
             SetupMaterialsTab();
             SetupTestsTab();
             SetupTestResultsTab();

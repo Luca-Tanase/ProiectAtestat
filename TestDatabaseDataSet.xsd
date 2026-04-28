@@ -124,6 +124,15 @@ VALUES (@name,@type,@density_kg_m3,@YoungModulus_GPa,@notes); </CommandText>
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="MaterialNumber" Modifier="Public" Name="MaterialNumber" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="MaterialNumber">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT COUNT(*) AS materialNum
+FROM     materials</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestMaterialInsert" Modifier="Public" Name="TestMaterialInsert" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="TestMaterialInsert">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -378,6 +387,15 @@ VALUES (@type, GETDATE(),@notes,@materialId); </CommandText>
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
+              <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestNumber" Modifier="Public" Name="TestNumber" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="TestNumber">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT COUNT(*) AS testNum
+FROM     tests</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="TestDatabaseConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="TestStatisticsUpdate" Modifier="Public" Name="TestStatisticsUpdate" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="TestStatisticsUpdate">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -620,21 +638,21 @@ HAVING (MAX(tests.maxForce_N) - MIN(tests.maxForce_N) &gt;= @minVariation) AND (
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="materialsForceVariation" msprop:Generator_RowClassName="materialsForceVariationRow" msprop:Generator_RowEvHandlerName="materialsForceVariationRowChangeEventHandler" msprop:Generator_RowDeletedName="materialsForceVariationRowDeleted" msprop:Generator_RowDeletingName="materialsForceVariationRowDeleting" msprop:Generator_RowEvArgName="materialsForceVariationRowChangeEvent" msprop:Generator_TablePropName="materialsForceVariation" msprop:Generator_RowChangedName="materialsForceVariationRowChanged" msprop:Generator_UserTableName="materialsForceVariation" msprop:Generator_RowChangingName="materialsForceVariationRowChanging" msprop:Generator_TableClassName="materialsForceVariationDataTable" msprop:Generator_TableVarName="tablematerialsForceVariation">
+        <xs:element name="materialsForceVariation" msprop:Generator_RowEvHandlerName="materialsForceVariationRowChangeEventHandler" msprop:Generator_RowDeletedName="materialsForceVariationRowDeleted" msprop:Generator_RowDeletingName="materialsForceVariationRowDeleting" msprop:Generator_RowEvArgName="materialsForceVariationRowChangeEvent" msprop:Generator_TablePropName="materialsForceVariation" msprop:Generator_RowChangedName="materialsForceVariationRowChanged" msprop:Generator_UserTableName="materialsForceVariation" msprop:Generator_RowChangingName="materialsForceVariationRowChanging" msprop:Generator_RowClassName="materialsForceVariationRow" msprop:Generator_TableClassName="materialsForceVariationDataTable" msprop:Generator_TableVarName="tablematerialsForceVariation">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
-              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname">
+              <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="maxForce" msdata:ReadOnly="true" msprop:Generator_UserColumnName="maxForce" msprop:Generator_ColumnPropNameInTable="maxForceColumn" msprop:Generator_ColumnPropNameInRow="maxForce" msprop:Generator_ColumnVarNameInTable="columnmaxForce" type="xs:decimal" minOccurs="0" />
-              <xs:element name="minForce" msdata:ReadOnly="true" msprop:Generator_UserColumnName="minForce" msprop:Generator_ColumnPropNameInTable="minForceColumn" msprop:Generator_ColumnPropNameInRow="minForce" msprop:Generator_ColumnVarNameInTable="columnminForce" type="xs:decimal" minOccurs="0" />
-              <xs:element name="forceVariation" msdata:ReadOnly="true" msprop:Generator_UserColumnName="forceVariation" msprop:Generator_ColumnPropNameInTable="forceVariationColumn" msprop:Generator_ColumnPropNameInRow="forceVariation" msprop:Generator_ColumnVarNameInTable="columnforceVariation" type="xs:decimal" minOccurs="0" />
-              <xs:element name="testCount" msdata:ReadOnly="true" msprop:Generator_UserColumnName="testCount" msprop:Generator_ColumnPropNameInTable="testCountColumn" msprop:Generator_ColumnPropNameInRow="testCount" msprop:Generator_ColumnVarNameInTable="columntestCount" type="xs:int" minOccurs="0" />
+              <xs:element name="maxForce" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="maxForceColumn" msprop:Generator_ColumnPropNameInRow="maxForce" msprop:Generator_UserColumnName="maxForce" msprop:Generator_ColumnVarNameInTable="columnmaxForce" type="xs:decimal" minOccurs="0" />
+              <xs:element name="minForce" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="minForceColumn" msprop:Generator_ColumnPropNameInRow="minForce" msprop:Generator_UserColumnName="minForce" msprop:Generator_ColumnVarNameInTable="columnminForce" type="xs:decimal" minOccurs="0" />
+              <xs:element name="forceVariation" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="forceVariationColumn" msprop:Generator_ColumnPropNameInRow="forceVariation" msprop:Generator_UserColumnName="forceVariation" msprop:Generator_ColumnVarNameInTable="columnforceVariation" type="xs:decimal" minOccurs="0" />
+              <xs:element name="testCount" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="testCountColumn" msprop:Generator_ColumnPropNameInRow="testCount" msprop:Generator_UserColumnName="testCount" msprop:Generator_ColumnVarNameInTable="columntestCount" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -655,8 +673,8 @@ HAVING (MAX(tests.maxForce_N) - MIN(tests.maxForce_N) &gt;= @minVariation) AND (
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="tests_testResults" msdata:parent="tests" msdata:child="testResults" msdata:parentkey="id" msdata:childkey="testId" msprop:Generator_UserParentTable="tests" msprop:Generator_UserChildTable="testResults" msprop:Generator_RelationVarName="relationtests_testResults" msprop:Generator_ChildPropName="GettestResultsRows" msprop:Generator_ParentPropName="testsRow" msprop:Generator_UserRelationName="tests_testResults" />
-      <msdata:Relationship name="materials_tests" msdata:parent="materials" msdata:child="tests" msdata:parentkey="id" msdata:childkey="materialId" msprop:Generator_UserParentTable="materials" msprop:Generator_UserChildTable="tests" msprop:Generator_RelationVarName="relationmaterials_tests" msprop:Generator_ChildPropName="GettestsRows" msprop:Generator_UserRelationName="materials_tests" msprop:Generator_ParentPropName="materialsRow" />
+      <msdata:Relationship name="tests_testResults" msdata:parent="tests" msdata:child="testResults" msdata:parentkey="id" msdata:childkey="testId" msprop:Generator_UserParentTable="tests" msprop:Generator_UserChildTable="testResults" msprop:Generator_RelationVarName="relationtests_testResults" msprop:Generator_ChildPropName="GettestResultsRows" msprop:Generator_UserRelationName="tests_testResults" msprop:Generator_ParentPropName="testsRow" />
+      <msdata:Relationship name="materials_tests" msdata:parent="materials" msdata:child="tests" msdata:parentkey="id" msdata:childkey="materialId" msprop:Generator_UserParentTable="materials" msprop:Generator_UserChildTable="tests" msprop:Generator_RelationVarName="relationmaterials_tests" msprop:Generator_ChildPropName="GettestsRows" msprop:Generator_ParentPropName="materialsRow" msprop:Generator_UserRelationName="materials_tests" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

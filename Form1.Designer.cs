@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.dashboardPage = new System.Windows.Forms.TabPage();
+            this.testNumLabel = new System.Windows.Forms.Label();
+            this.materialNumLabel = new System.Windows.Forms.Label();
             this.fileModelDownload = new System.Windows.Forms.Button();
             this.fileImportButton = new System.Windows.Forms.Button();
             this.fileImportComboBox = new System.Windows.Forms.ComboBox();
@@ -47,6 +49,11 @@
             this.materialsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testDatabaseDataSet = new ProiectAtestat.TestDatabaseDataSet();
             this.materialPage = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.maxForceTestsButton = new System.Windows.Forms.Button();
+            this.testReassignButton = new System.Windows.Forms.Button();
+            this.avgMaxForceButton = new System.Windows.Forms.Button();
+            this.findForceVariationButton = new System.Windows.Forms.Button();
             this.forceVariationPanel = new System.Windows.Forms.Panel();
             this.showVariationResultButton = new System.Windows.Forms.Button();
             this.minTestNumTextBox = new System.Windows.Forms.TextBox();
@@ -71,11 +78,7 @@
             this.cancelReassignButton = new System.Windows.Forms.Button();
             this.confirmReassignButton = new System.Windows.Forms.Button();
             this.materialsOutputDataGridView = new System.Windows.Forms.DataGridView();
-            this.findForceVariationButton = new System.Windows.Forms.Button();
-            this.maxForceTestsButton = new System.Windows.Forms.Button();
-            this.avgMaxForceButton = new System.Windows.Forms.Button();
             this.materialDeleteButton = new System.Windows.Forms.Button();
-            this.testReassignButton = new System.Windows.Forms.Button();
             this.materialsInputDataGridView = new System.Windows.Forms.DataGridView();
             this.materialsInputId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.materialsInputName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -157,6 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.materialsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).BeginInit();
             this.materialPage.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.forceVariationPanel.SuspendLayout();
             this.maxForceTestsPanel.SuspendLayout();
             this.averageForcePanel.SuspendLayout();
@@ -190,13 +194,15 @@
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(832, 739);
+            this.tabControl.Size = new System.Drawing.Size(1116, 869);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // dashboardPage
             // 
             this.dashboardPage.AutoScroll = true;
+            this.dashboardPage.Controls.Add(this.testNumLabel);
+            this.dashboardPage.Controls.Add(this.materialNumLabel);
             this.dashboardPage.Controls.Add(this.fileModelDownload);
             this.dashboardPage.Controls.Add(this.fileImportButton);
             this.dashboardPage.Controls.Add(this.fileImportComboBox);
@@ -210,6 +216,24 @@
             this.dashboardPage.TabIndex = 0;
             this.dashboardPage.Text = "Dashboard";
             this.dashboardPage.UseVisualStyleBackColor = true;
+            // 
+            // testNumLabel
+            // 
+            this.testNumLabel.AutoSize = true;
+            this.testNumLabel.Location = new System.Drawing.Point(8, 43);
+            this.testNumLabel.Name = "testNumLabel";
+            this.testNumLabel.Size = new System.Drawing.Size(101, 16);
+            this.testNumLabel.TabIndex = 7;
+            this.testNumLabel.Text = "Număr de teste:";
+            // 
+            // materialNumLabel
+            // 
+            this.materialNumLabel.AutoSize = true;
+            this.materialNumLabel.Location = new System.Drawing.Point(8, 13);
+            this.materialNumLabel.Name = "materialNumLabel";
+            this.materialNumLabel.Size = new System.Drawing.Size(128, 16);
+            this.materialNumLabel.TabIndex = 6;
+            this.materialNumLabel.Text = "Număr de materiale:";
             // 
             // fileModelDownload
             // 
@@ -325,16 +349,13 @@
             // materialPage
             // 
             this.materialPage.AutoScroll = true;
+            this.materialPage.Controls.Add(this.flowLayoutPanel1);
             this.materialPage.Controls.Add(this.forceVariationPanel);
             this.materialPage.Controls.Add(this.maxForceTestsPanel);
             this.materialPage.Controls.Add(this.averageForcePanel);
             this.materialPage.Controls.Add(this.reassignPanel);
             this.materialPage.Controls.Add(this.materialsOutputDataGridView);
-            this.materialPage.Controls.Add(this.findForceVariationButton);
-            this.materialPage.Controls.Add(this.maxForceTestsButton);
-            this.materialPage.Controls.Add(this.avgMaxForceButton);
             this.materialPage.Controls.Add(this.materialDeleteButton);
-            this.materialPage.Controls.Add(this.testReassignButton);
             this.materialPage.Controls.Add(this.materialsInputDataGridView);
             this.materialPage.Controls.Add(this.materialNotesTextBox);
             this.materialPage.Controls.Add(this.materialInsertButton);
@@ -350,6 +371,57 @@
             this.materialPage.TabIndex = 1;
             this.materialPage.Text = "Materiale";
             this.materialPage.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.maxForceTestsButton);
+            this.flowLayoutPanel1.Controls.Add(this.testReassignButton);
+            this.flowLayoutPanel1.Controls.Add(this.avgMaxForceButton);
+            this.flowLayoutPanel1.Controls.Add(this.findForceVariationButton);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 444);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(645, 50);
+            this.flowLayoutPanel1.TabIndex = 27;
+            // 
+            // maxForceTestsButton
+            // 
+            this.maxForceTestsButton.Location = new System.Drawing.Point(3, 3);
+            this.maxForceTestsButton.Name = "maxForceTestsButton";
+            this.maxForceTestsButton.Size = new System.Drawing.Size(126, 45);
+            this.maxForceTestsButton.TabIndex = 11;
+            this.maxForceTestsButton.Text = "Afișare teste cu forță maximă";
+            this.maxForceTestsButton.UseVisualStyleBackColor = true;
+            this.maxForceTestsButton.Click += new System.EventHandler(this.maxForceTestsButton_Click);
+            // 
+            // testReassignButton
+            // 
+            this.testReassignButton.Location = new System.Drawing.Point(135, 3);
+            this.testReassignButton.Name = "testReassignButton";
+            this.testReassignButton.Size = new System.Drawing.Size(126, 32);
+            this.testReassignButton.TabIndex = 8;
+            this.testReassignButton.Text = "Reatribuie teste";
+            this.testReassignButton.UseVisualStyleBackColor = true;
+            this.testReassignButton.Click += new System.EventHandler(this.testReassignButton_Click);
+            // 
+            // avgMaxForceButton
+            // 
+            this.avgMaxForceButton.Location = new System.Drawing.Point(267, 3);
+            this.avgMaxForceButton.Name = "avgMaxForceButton";
+            this.avgMaxForceButton.Size = new System.Drawing.Size(126, 45);
+            this.avgMaxForceButton.TabIndex = 10;
+            this.avgMaxForceButton.Text = "Calculează forța maximă medie";
+            this.avgMaxForceButton.UseVisualStyleBackColor = true;
+            this.avgMaxForceButton.Click += new System.EventHandler(this.avgMaxForceButton_Click);
+            // 
+            // findForceVariationButton
+            // 
+            this.findForceVariationButton.Location = new System.Drawing.Point(399, 3);
+            this.findForceVariationButton.Name = "findForceVariationButton";
+            this.findForceVariationButton.Size = new System.Drawing.Size(215, 45);
+            this.findForceVariationButton.TabIndex = 12;
+            this.findForceVariationButton.Text = "Găsește materiale cu variație mare a forței maxime aplicate";
+            this.findForceVariationButton.UseVisualStyleBackColor = true;
+            this.findForceVariationButton.Click += new System.EventHandler(this.findForceVariationButton_Click);
             // 
             // forceVariationPanel
             // 
@@ -928,7 +1000,7 @@
             this.testInsertButton.UseVisualStyleBackColor = true;
             this.testInsertButton.Click += new System.EventHandler(this.testInsertButton_Click);
             // 
-            // testMaterialIdTextBox
+            // dataGridViewTextBoxColumn8
             // 
             this.testMaterialIdTextBox.ForeColor = System.Drawing.Color.Gray;
             this.testMaterialIdTextBox.Location = new System.Drawing.Point(220, 52);
@@ -938,7 +1010,7 @@
             this.testMaterialIdTextBox.TabIndex = 10;
             this.testMaterialIdTextBox.Text = "Id material asociat";
             // 
-            // testNotesTextBox
+            // dataGridViewTextBoxColumn9
             // 
             this.testNotesTextBox.ForeColor = System.Drawing.Color.Gray;
             this.testNotesTextBox.Location = new System.Drawing.Point(112, 52);
@@ -1387,6 +1459,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.testDatabaseDataSet)).EndInit();
             this.materialPage.ResumeLayout(false);
             this.materialPage.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.forceVariationPanel.ResumeLayout(false);
             this.forceVariationPanel.PerformLayout();
             this.maxForceTestsPanel.ResumeLayout(false);
@@ -1536,6 +1609,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn youngModulusEstGPaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn notesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn materialIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label testNumLabel;
+        private System.Windows.Forms.Label materialNumLabel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
