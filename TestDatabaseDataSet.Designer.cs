@@ -5158,26 +5158,20 @@ SELECT id, type, date, maxForce_N, maxStrain, YoungModulusEst_GPa, notes, materi
             this._commandCollection[4].CommandText = @"WITH elastic AS (SELECT TOP (30) force_N, strain
                                  FROM      testResults
                                  WHERE   (testId = @testId) AND (strain < 0.003)
-                                 ORDER BY strain)
+                                 ORDER BY id), stats AS
+    (SELECT COUNT(*) AS n, SUM(force_N) AS sumF, SUM(strain) AS sumE, SUM(force_N * strain) AS sumFE, SUM(strain * strain) AS sumEE
+     FROM      elastic AS elastic_1)
     UPDATE tests
-    SET          YoungModulusEst_GPa =
-                          ((SELECT COUNT(*) AS Expr1
-                            FROM      elastic AS elastic_8) *
-                          (SELECT SUM(force_N * strain) AS Expr1
-                           FROM      elastic AS elastic_7) -
-                          (SELECT SUM(force_N) AS Expr1
-                           FROM      elastic AS elastic_6) *
-                          (SELECT SUM(strain) AS Expr1
-                           FROM      elastic AS elastic_5)) / NULLIF
-                          ((SELECT COUNT(*) AS Expr1
-                            FROM      elastic AS elastic_4) *
-                          (SELECT SUM(strain * strain) AS Expr1
-                           FROM      elastic AS elastic_3) -
-                          (SELECT SUM(strain) AS Expr1
-                           FROM      elastic AS elastic_2) *
-                          (SELECT SUM(strain) AS Expr1
-                           FROM      elastic AS elastic_1), 0) / 1e9
-    WHERE  (id = @testId)";
+    SET          maxForce_N =
+                          (SELECT MAX(force_N) AS Expr1
+                           FROM      testResults AS testResults_2
+                           WHERE   (testId = @testId)), maxStrain =
+                          (SELECT MAX(strain) AS Expr1
+                           FROM      testResults AS testResults_1
+                           WHERE   (testId = @testId)), YoungModulusEst_GPa = (stats_1.n * stats_1.sumFE - stats_1.sumF * stats_1.sumE) / NULLIF (stats_1.n * stats_1.sumEE - stats_1.sumE * stats_1.sumE, 0) / 1e4
+    FROM     stats AS stats_1 CROSS JOIN
+                      tests
+    WHERE  (tests.id = @testId)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@testId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
