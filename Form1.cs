@@ -30,7 +30,10 @@ namespace ProiectAtestat
 
             testDatabaseDataSet.EnforceConstraints = false;
 
-            GenerateTestData();
+            if((int)materialsTableAdapter.MaterialNumber() == 0)
+            {
+                GenerateTestData();
+            }
 
             SetEnterLeaveTextBoxes();
 
