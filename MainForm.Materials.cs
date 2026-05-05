@@ -96,6 +96,34 @@ namespace ProiectAtestat
             currentPanel = null;
         }
 
+        private void avgMaxForceButton_Click(object sender, EventArgs e)
+        {
+            if (currentPanel != null)
+                currentPanel.Visible = false;
+
+            averageForcePanel.Visible = true;
+            currentPanel = averageForcePanel;
+        }
+        private void findForceVariationButton_Click(object sender, EventArgs e)
+        {
+            if (currentPanel != null)
+                currentPanel.Visible = false;
+
+            forceVariationPanel.Visible = true;
+            currentPanel = forceVariationPanel;
+        }
+        private void maxForceTestsButton_Click(object sender, EventArgs e)
+        {
+            if (currentPanel != null)
+                currentPanel.Visible = false;
+
+            maxForceTestsPanel.Visible = true;
+            currentPanel = maxForceTestsPanel;
+
+            DataTable table = materialsMaxForceTestsTableAdapter.GetMaxForceTestsTable();
+            materialsOutputDataGridView.DataSource = table;
+        }
+
         private void confirmReassignButton_Click(object sender, EventArgs e)
         {
             if (targetMaterialComboBox.SelectedIndex < 0)
@@ -110,27 +138,6 @@ namespace ProiectAtestat
             );
         }
 
-        private void avgMaxForceButton_Click(object sender, EventArgs e)
-        {
-            if (currentPanel != null)
-                currentPanel.Visible = false;
-
-            averageForcePanel.Visible = true;
-            currentPanel = averageForcePanel;
-        }
-
-        private void maxForceTestsButton_Click(object sender, EventArgs e)
-        {
-            if (currentPanel != null)
-                currentPanel.Visible = false;
-
-            maxForceTestsPanel.Visible = true;
-            currentPanel = maxForceTestsPanel;
-
-            DataTable table = materialsMaxForceTestsTableAdapter.GetMaxForceTestsTable();
-            materialsOutputDataGridView.DataSource = table;
-        }
-
         private void showResultButton_Click(object sender, EventArgs e)
         {
             DataTable table = materialsForceFilteredTableAdapter.GetAvgMaxForceTable(
@@ -139,15 +146,6 @@ namespace ProiectAtestat
             );
 
             materialsOutputDataGridView.DataSource = table;
-        }
-
-        private void findForceVariationButton_Click(object sender, EventArgs e)
-        {
-            if (currentPanel != null)
-                currentPanel.Visible = false;
-
-            forceVariationPanel.Visible = true;
-            currentPanel = forceVariationPanel;
         }
 
         private void showVariationResultButton_Click(object sender, EventArgs e)
