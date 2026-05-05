@@ -60,10 +60,18 @@ namespace ProiectAtestat
 
         private void materialsInputDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            if (materialsInputDataGridView.CurrentRow != null)
+            if (materialsInputDataGridView.CurrentRow != null &&
+        materialsInputDataGridView.CurrentRow.Cells["materialsInputName"].Value != null)
             {
+                int materialId = Convert.ToInt32(
+                    materialsInputDataGridView.CurrentRow.Cells["materialsInputId"].Value);
+
                 sourceMaterialNameLabel.Text = "De la materialul: " +
                     materialsInputDataGridView.CurrentRow.Cells["materialsInputName"].Value.ToString();
+
+                testNumByMaterialIdLabel.Text =
+                    "Număr de teste ale materialului selectat: " +
+                    testsTableAdapter.GetTestNumByMaterialId(materialId);
             }
         }
 

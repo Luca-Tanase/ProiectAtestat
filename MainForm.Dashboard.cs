@@ -25,6 +25,8 @@ namespace ProiectAtestat
             //Option 2: Use a SQL query to get the count directly from the database
             materialNumLabel.Text = "Număr de materiale: " + materialsTableAdapter.MaterialNumber().ToString();
             testNumLabel.Text = "Număr de teste: " + testsTableAdapter.TestNumber().ToString();
+            testNumTodayLabel.Text = "Număr de teste efectuate astăzi: " + testsTableAdapter.TestNumToday().ToString();
+            mostTestsMaterialLabel.Text = "Materialul cu cel mai mare număr de teste: " + materialsTableAdapter.GetMaterialWithMostTests().ToString();
         }
     }
 }
